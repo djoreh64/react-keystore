@@ -1,19 +1,21 @@
-import React from "react"
+import { useState } from "react"
 
 function Header() {
+    const [activeDropdown, setActiveDropdown] = useState(0)
+
     return (
       <header className="header">
           <nav className="navbar">
-              <a href="#" className="nav_logo"><span className="logo-key">key</span>store</a>
+              <a href="#" className="nav__logo"><span className="logo-key">key</span>store</a>
               <div className="search-holder">
-                  <input placeholder="Найти игру или дополнение" className="nav_search" type="search"/>
-                  <svg className="search-icon" width="28" height="28" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path className="search-icon_path" d="M9.51761 20.5049L2 28M6.33333 12.8333C6.33333 18.8164 11.1836 23.6667 17.1667 23.6667C23.1498 23.6667 28 18.8164 28 12.8333C28 6.85024 23.1498 2 17.1667 2C11.1836 2 6.33333 6.85024 6.33333 12.8333Z" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+                  <input placeholder="Найти игру или дополнение" maxLength={30} className="nav_search" type="search"/>
+                  <svg className="search__icon" width="28" height="28" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path className="search__icon_path" d="M9.51761 20.5049L2 28M6.33333 12.8333C6.33333 18.8164 11.1836 23.6667 17.1667 23.6667C23.1498 23.6667 28 18.8164 28 12.8333C28 6.85024 23.1498 2 17.1667 2C11.1836 2 6.33333 6.85024 6.33333 12.8333Z" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
               </div>
-              <div className="nav-btn_holder">
-                  <button className="nav-sign_in">Войти</button>
-                  <div className="nav-btn_holder_icons">
+              <div className="nav__btn_holder">
+                  <button className="nav__sign-in">Войти</button>
+                  <div className="nav__btn_holder_icons">
                       <a href="#"><svg className="favourites_icon" width="28" height="28" viewBox="0 0 32 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M22.1667 1C27.45 1 31 5.8425 31 10.36C31 19.5088 16.2667 27 16 27C15.7333 27 1 19.5088 1 10.36C1 5.8425 4.55 1 9.83333 1C12.8667 1 14.85 2.47875 16 3.77875C17.15 2.47875 19.1333 1 22.1667 1Z" stroke="#E8E8E8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                           </svg></a>
@@ -23,9 +25,33 @@ function Header() {
                           </a>
                   </div>
               </div>
+              <a className="dropdown-icon" onClick={() => {activeDropdown == 0 ? setActiveDropdown(1) : setActiveDropdown(0)}}>-</a>
+              <div className={activeDropdown == 0 ? "navbar__dropdown hide": "navbar__dropdown"}>
+              <div className="search-holder">
+                  <input placeholder="Найти игру или дополнение" maxLength={30} className="nav_search" type="search"/>
+                  <svg className="search__icon" width="28" height="28" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path className="search__icon_path" d="M9.51761 20.5049L2 28M6.33333 12.8333C6.33333 18.8164 11.1836 23.6667 17.1667 23.6667C23.1498 23.6667 28 18.8164 28 12.8333C28 6.85024 23.1498 2 17.1667 2C11.1836 2 6.33333 6.85024 6.33333 12.8333Z" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+              </div>
+              <div className="nav__btn_holder">
+                  <button className="nav__sign-in">Войти</button>
+                  <div className="nav__btn_holder_icons">
+                      <a href="#"><svg className="favourites_icon" width="28" height="28" viewBox="0 0 32 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M22.1667 1C27.45 1 31 5.8425 31 10.36C31 19.5088 16.2667 27 16 27C15.7333 27 1 19.5088 1 10.36C1 5.8425 4.55 1 9.83333 1C12.8667 1 14.85 2.47875 16 3.77875C17.15 2.47875 19.1333 1 22.1667 1Z" stroke="#E8E8E8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg></a>
+                      <a className="cart_icon" href="#"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M5.76633 3.88889H24C25.6569 3.88889 27 5.23203 27 6.88889V11C27 12.6569 25.6569 14 24 14H7.33333M25.5556 19.7778H8.22222L5.72469 3.54383C5.49954 2.08033 4.24029 1 2.75958 1H1M9.66667 25.5556C9.66667 26.3533 9.01996 27 8.22222 27C7.42448 27 6.77778 26.3533 6.77778 25.5556C6.77778 24.7578 7.42448 24.1111 8.22222 24.1111C9.01996 24.1111 9.66667 24.7578 9.66667 25.5556ZM25.5556 25.5556C25.5556 26.3533 24.9089 27 24.1111 27C23.3133 27 22.6667 26.3533 22.6667 25.5556C22.6667 24.7578 23.3133 24.1111 24.1111 24.1111C24.9089 24.1111 25.5556 24.7578 25.5556 25.5556Z" stroke="#E8E8E8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                          </a>
+                  </div>
+              </div>
+              </div>
           </nav>
       </header>
     )
   }
+
+  
+ 
 
 export default Header

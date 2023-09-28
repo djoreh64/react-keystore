@@ -12,8 +12,8 @@ function App() {
         <section className="main-section">
             <Genres/>
             <div className="card-holder">
-                {games.map((game) => (
-                  <Card title = {game.name} price = {game.price} image = {game.cover}/>
+                {games.map((game, i) => (
+                  <Card key={i} title = {game.name} price = {game.price} image = {game.cover} />
                 ))}
             </div>
         </section>

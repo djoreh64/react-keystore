@@ -170,12 +170,6 @@ a {
                     stroke: #272727
                 }
             }
-            
-            .nav__search:focus {
-                .search-icon_path {
-                    stroke: red
-                }
-            }
 
             .search__icon {
                 pointer-events: none;
@@ -235,11 +229,79 @@ a {
     .main-section {
         width: 81.7%;
 
+        .genre__section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            @media (max-width: 1024px) {
+                flex-direction: column;
+                gap: 50px;
+                align-items: end;
+            }
+
+            &_sort {
+                text-align: right;
+                text-wrap: nowrap;
+                font-size: 15px;
+                color: #E8E8E8;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                position: relative;
+
+                .sort_popup {
+                    position: absolute;
+                    top: 50px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 10px;
+                    right: 0;
+                    z-index: 100;
+                    background-color: #1C1C1C;
+                    overflow: hidden;
+
+                    ul {
+                        list-style: none;
+                        text-align: left;
+                        
+                        .sort_active {
+                            background-color: #E8E8E8;
+                            color: #1C1C1C;
+                        }
+                        
+                        li {
+                            &:hover {
+                                background-color: #E8E8E8;
+                                color: #1C1C1C;
+                            }
+
+                            transition: .4s ease-out;
+                            padding: 20px;
+                        }
+                    }
+                }
+
+                .sort_btn {
+                    font-weight: 500;
+                    text-decoration-line: underline;
+                    color: #7c7c7c;
+                }
+
+                .sort_icon {
+                    width: 10px;
+                    height: 10px;
+                }
+            }
+        }
+
         .genres__holder {
             display: flex;
             flex-wrap: wrap;
             gap: 15px;
-            margin-bottom: 48px;
+
             transition: .4s ease-out;
 
             .genre-btn {
@@ -283,6 +345,7 @@ a {
             margin-bottom: 48px;
             row-gap: 38px;
             column-gap: 50px;
+            margin-top: 48px;
 
             @media (max-width: 1366px) {
                 grid-template-columns: repeat(4, 1fr);

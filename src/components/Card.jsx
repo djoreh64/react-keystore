@@ -1,14 +1,17 @@
 import React from 'react';
 import { useState } from 'react';
 
-function Card({title, price, image}) {
+function Card({name, price, cover}) {
 
     return (
         <div className="card">
-            <img className="card__img" style={{backgroundImage: `url(${image})`}} alt=""/>
+            <a href="#" className='card__add'>В корзину</a>
+            <div className="card__img" style={{backgroundImage: `url(${cover})`}}/>
             <div className="card__text">
-                <h4 className="card__headline">{title}</h4>
-                <div className="card__price">{Math.ceil(price * 100)} руб</div>
+                <div className='card__text_holder'>
+                <h4 className="card__headline">{name}</h4>
+                <div className="card__price">{price} руб</div>
+                </div>
             </div>
         </div>
     )

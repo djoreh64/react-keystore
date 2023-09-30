@@ -1,24 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import Home from './pages/Home'
 import Header from './components/Header'
-import Genres from './components/Genres'
-import Card from './components/Card'
-import games from './assets/games.json'
+import NotFound from './pages/NotFound/NotFound';
+import { BrowserRouter, Route, Routes }  from 'react-router-dom';
+
 
 function App() {
   return (
-    <div className="wrapper">
-    <Header/>
-    <main className="main">
+    <>
+      <Header/>
+      <main className="main">
         <section className="main-section">
-            <Genres/>
-            <div className="card-holder">
-                {games.map((game, i) => (
-                  <Card key={i} title = {game.name} price = {game.price} image = {game.cover} />
-                ))}
-            </div>
+          <Routes>
+            <Route path='/' element= {<Home/>}/>
+            <Route path='*' element= {<NotFound/>}/>
+          </Routes>
         </section>
     </main>
-</div>
+    </>
   );
 }
 

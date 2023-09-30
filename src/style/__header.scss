@@ -1,0 +1,190 @@
+.header {
+    
+    height: 256px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .search-holder {
+            position: relative;
+            width: 36%;
+            transition: .4s ease-out;
+
+            .nav_search {
+                color: #4e4e4e;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-weight: 500;
+                padding: 20px;
+                user-select: none;
+                width: 100%;
+                height: 49px;
+                background-color: #1F1F1F;
+                border-radius: 20px;
+                transition: .4s ease-out;
+
+                &::placeholder {
+                    color: #4e4e4e;
+                }
+
+                &:focus {
+                    box-shadow: 0 0 15px rgba(232, 232, 232, .2), 0 0 30px rgba(232, 232, 232, .05);
+                    background-color: #E8E8E8;
+                    color: #1F1F1F;
+
+                    &:hover {
+                        box-shadow: 0 0 15px rgba(232, 232, 232, .2), 0 0 30px rgba(232, 232, 232, .05);
+                        background-color: #E8E8E8;
+                        color: #1F1F1F;
+                    }
+                }
+
+                &:hover {
+                    background-color: #2c2c2c;
+                }
+
+                
+            }
+
+            .search__icon_path {
+                transition: .4s ease-out;
+            }
+
+            &:hover {
+                .search__icon_path {
+                    stroke: #272727
+                }
+            }
+
+            .search__icon {
+                pointer-events: none;
+                position: absolute;
+                right: 20px;
+                top: 10px;
+            }
+        }
+
+        .nav__btn_holder {
+            display: flex;
+            justify-content: space-between;
+            width: 277px;
+
+            &_icons {
+                width: 77px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .nav__sign-in {
+                transition: .4s ease-out;
+                font-size: 18px;
+                background-color: transparent;
+                color: #E8E8E8;
+                width: 134px;
+                height: 49px;
+                border-radius: 20px;
+                box-sizing: border-box;
+                outline: 2px solid #E8E8E8;
+                outline-offset: -2px;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #E8E8E8;
+                    color: #1F1F1F;
+                }
+            }
+
+            svg {
+                fill: transparent;
+                transition: .4s ease-out;
+                &:hover {
+                    fill: #E8E8E8;
+                }
+            }
+        }
+
+    .dropdown {
+        overflow: hidden;
+        background-color: #1c1c1cec;
+        transition: .2s ease-out;
+        z-index: 999;
+        gap: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        position: absolute;
+        border-radius: 10px;
+        right: 0;
+        top: 200px;
+        width: 200px;
+        height: 300px;
+
+        .nav__sign-in {
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav__btn_holder {
+            width: 100%;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .search-holder {
+            width: 75%;
+
+            .nav_search {
+                font-size: 10px;
+            }
+
+            svg {
+                display: none;
+            }
+        }
+
+        .search-holder, .nav__sign-in, .nav__btn_holder_icons a, .nav__btn_holder {
+            display: flex;
+        }
+    }
+
+    .dropdown-icon {
+        cursor: pointer;
+        font-size: 20px;
+        font-weight: bold;
+        display: none;
+        color: #E8E8E8;
+    }
+
+    @media (max-width:1024px) {
+        .search-holder, .nav__sign-in, .nav__btn_holder_icons a, .nav__btn_holder {
+            display: none;
+        }
+
+        .dropdown-icon {
+            display: block;
+        }
+    }
+
+    .navbar {
+        margin-top: 54px;
+        width: 81%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .nav__logo {
+            font-size: 40px;
+            color: #E8E8E8;
+        }
+
+        .logo-key {
+            font-weight: 600;
+        }
+    }
+}

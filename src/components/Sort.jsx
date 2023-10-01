@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 function Sort({sortType, onClickType, sortIcon, setSortIcon}) {
   const [activeSort, setActiveSort] = useState(false)
-  const sortList = [{name: 'популярности', sortProperty: "rating"}, {name: 'цене', sortProperty: "price"}, {name: 'алфавиту', sortProperty: "name"}]
+  const sortList = [{name: 'рейтингу', sortProperty: "rating"}, {name: 'цене', sortProperty: "price"}, {name: 'алфавиту', sortProperty: "name"}]
 
   const onClickListItem = (i) => {
     onClickType(i)

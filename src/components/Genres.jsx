@@ -1,18 +1,17 @@
-function Genres({ genreValue, onClickGenre}) {
-
+function Genres({ genreValue, setGenreValue}) {
   const genres = [
-    'Все',
-    'Экшен',
-    'Стратегии',
-    'Шутеры',
-    'Платформеры',
-    'Приключения',
-    'Другие жанры',
+    {name: 'Все', genreProperty: 'all'},
+    {name: 'Экшен', genreProperty: 'action'},
+    {name: 'Стратегии', genreProperty: 'strategy'},
+    {name: 'Шутеры', genreProperty: 'shooter'},
+    {name: 'Платформеры', genreProperty: 'platformer'},
+    {name: 'Рогалики', genreProperty: 'roguelike'},
+    {name: 'Метроидвании', genreProperty: 'metroidvania'},
   ]
     return (
         <div className="genres__holder">
           {genres.map((genre, index) => (
-              <a key={index} onClick={() => onClickGenre(index)} className = {genreValue == index ? 'genre-btn checked-genre' : 'genre-btn'}>{genre}</a>
+              <a key={index} onClick={() => setGenreValue(genre)} className = {genreValue.genreProperty == genre.genreProperty ? 'genre-btn checked-genre' : 'genre-btn'}>{genre.name}</a>
           ))}
         </div>
     )

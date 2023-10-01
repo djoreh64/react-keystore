@@ -2,9 +2,9 @@ import styles from './NotFound.module.scss'
 
 const NotFound = () => {
     return (
-        <main className={styles.main}>
+        <div className={styles.main}>
         <h1>Страница не найдена!</h1>
-        </main>
+        </div>
     )
 }
 

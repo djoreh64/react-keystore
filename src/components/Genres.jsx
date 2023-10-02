@@ -1,4 +1,4 @@
-function Genres({ genreValue, setGenreValue}) {
+function Genres({ genreValue, setGenreValue, setCurrentPage}) {
   const genres = [
     {name: 'Все', genreProperty: 'all'},
     {name: 'Экшен', genreProperty: 'action'},
@@ -12,7 +12,10 @@ function Genres({ genreValue, setGenreValue}) {
     return (
         <div className="genres__holder">
           {genres.map((genre, index) => (
-              <a key={index} onClick={() => setGenreValue(genre)} className = {genreValue.genreProperty == genre.genreProperty ? 'genre-btn checked-genre' : 'genre-btn'}>{genre.name}</a>
+              <a key={index} onClick={() => {
+                setGenreValue(genre);
+                setCurrentPage(0)}} 
+               className = {genreValue.genreProperty == genre.genreProperty ? 'genre-btn checked-genre' : 'genre-btn'}>{genre.name}</a>
           ))}
         </div>
     )

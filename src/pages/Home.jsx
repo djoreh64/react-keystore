@@ -35,7 +35,7 @@ const Home = ({ searchText }) => {
         <>
         <section className="main-section">
         <div className="genre__section">
-        <Genres genreValue = {genreValue} setGenreValue = {(i) => setGenreValue(i)}/>
+        <Genres setCurrentPage={setCurrentPage} genreValue = {genreValue} setGenreValue = {(i) => setGenreValue(i)}/>
         <Sort sortIcon ={sortIcon} setSortIcon = {setSortIcon} sortType = {sortType} onClickType = {(i) => setSortType(i)}/>
         </div>
             <div className="card-holder">
@@ -52,9 +52,8 @@ const Home = ({ searchText }) => {
                 className='pagination'
                 breakLabel="..."
                 nextLabel=">"
+                pageCount={games.length < 10 ? 1 : 2}
                 onPageChange={(n) => setCurrentPage(n.selected)}
-                pageRangeDisplayed={2}
-                pageCount={2}
                 previousLabel="< "
                 renderOnZeroPageCount={null}
             />

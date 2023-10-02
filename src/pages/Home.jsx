@@ -5,7 +5,7 @@ import CardSkeleton from '../components/CardSkeleton';
 import Sort from '../components/Sort'
 
 
-const Home = () => {
+const Home = ({ searchText }) => {
     const [games, setGames] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [genreValue, setGenreValue] = useState({
@@ -39,7 +39,12 @@ const Home = () => {
             <div className="card-holder">
                 {isLoading
                 ? [...new Array(20)].map((_, i) => {return <CardSkeleton key = {i}/>}) 
-                : games.map(game => {return <Card key={game.cover} {...game}/>})}
+                : games.filter((obj) => {
+                    if (obj.name.toLowerCase().includes(searchText.toLowerCase())) {
+                        return true
+                    } 
+                    return false
+                }).map(game => {return <Card key={game.cover} {...game}/>})}
             </div>
         </section>
         </>  

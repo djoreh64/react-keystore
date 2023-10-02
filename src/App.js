@@ -8,12 +8,14 @@ import { BrowserRouter, Route, Routes }  from 'react-router-dom'
 import SignIn from './pages/SignIn'
 
 function App() {
+  const [searchText, setSearchText] = useState('')
+
   return (
     <>
-      <Header/>
+      <Header searchText={searchText} setSearchText={setSearchText}/>
       <main className="main">
           <Routes>
-            <Route path='/' element= {<Home/>}/>
+            <Route path='/' element= {<Home searchText={searchText}/>}/>
             <Route path='/cart' element= {<Cart/>}/>
             <Route path='/favourites' element= {<Favourites/>}/>
             <Route path='/signin' element= {<SignIn/>}/>

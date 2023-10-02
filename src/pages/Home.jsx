@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'
 import Genres from '../components/Genres'
 import Card from '../components/Card'
-import CardSkeleton from '../components/CardSkeleton';
+import CardSkeleton from '../components/CardSkeleton'
 import Sort from '../components/Sort'
+import ReactPaginate from 'react-paginate';
 
 
 const Home = ({ searchText }) => {
     const [games, setGames] = useState([])
     const [isLoading, setIsLoading] = useState(true)
+    const [currentPage, setCurrentPage] = useState(0)
     const [genreValue, setGenreValue] = useState({
         genreProperty: 'all'
     })
@@ -19,7 +21,7 @@ const Home = ({ searchText }) => {
 
     useEffect(() => {
         setIsLoading(true)
-        fetch(`https://6516e83f09e3260018ca764a.mockapi.io/items?genres=${genreValue.genreProperty !== 'all' ? `${genreValue.genreProperty}` : ``}&sortBy=${sortType.sortProperty}${sortIcon ? '&order=asc' : '&order=desc'}`)
+        fetch(`https://6516e83f09e3260018ca764a.mockapi.io/items?genres=${genreValue.genreProperty !== 'all' ? `${genreValue.genreProperty}` : ``}&sortBy=${sortType.sortProperty}${sortIcon ? '&order=asc' : '&order=desc'}&page=${currentPage + 1}&limit=20`)
         .then((res) => {
             return res.json();
         })
@@ -27,7 +29,7 @@ const Home = ({ searchText }) => {
             setGames(arr)
             setIsLoading(false)
         })
-    }, [genreValue, sortType, sortIcon])
+    }, [genreValue, sortType, sortIcon, currentPage])
 
     return (
         <>
@@ -46,6 +48,16 @@ const Home = ({ searchText }) => {
                     return false
                 }).map(game => {return <Card key={game.cover} {...game}/>})}
             </div>
+             <ReactPaginate
+                className='pagination'
+                breakLabel="..."
+                nextLabel=">"
+                onPageChange={(n) => setCurrentPage(n.selected)}
+                pageRangeDisplayed={2}
+                pageCount={2}
+                previousLabel="< "
+                renderOnZeroPageCount={null}
+            />
         </section>
         </>  
     )

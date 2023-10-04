@@ -1,9 +1,11 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
+import React from "react"
+import { SearchContext } from "../App"
 
-function Header({searchText, setSearchText}) {
+function Header() {
     const [activeMenu, setActiveMenu] = useState(false)
-
+    const {searchText, setSearchText} = React.useContext(SearchContext)
     return (
       <header className="header">
           <nav className="navbar">

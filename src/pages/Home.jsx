@@ -4,9 +4,10 @@ import Card from '../components/Card'
 import CardSkeleton from '../components/CardSkeleton'
 import Sort from '../components/Sort'
 import ReactPaginate from 'react-paginate';
+import { SearchContext } from '../App'
 
-
-const Home = ({ searchText }) => {
+const Home = () => {
+    const {searchText} = React.useContext(SearchContext)
     const [games, setGames] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [currentPage, setCurrentPage] = useState(0)
@@ -18,6 +19,7 @@ const Home = ({ searchText }) => {
         name: 'рейтингу',
         sortProperty: 'rating'
     })
+    const swithcher = require('ai-switcher-translit');
 
     useEffect(() => {
         setIsLoading(true)
@@ -42,7 +44,7 @@ const Home = ({ searchText }) => {
                 {isLoading
                 ? [...new Array(20)].map((_, i) => {return <CardSkeleton key = {i}/>}) 
                 : games.filter((obj) => {
-                    if (obj.name.toLowerCase().includes(searchText.toLowerCase())) {
+                    if (swithcher.getSwitch(obj.name.toLowerCase(), {type: 'engru',}).includes(searchText.toLowerCase()) || obj.name.toLowerCase().includes(searchText.toLowerCase())) {
                         return true
                     } 
                     return false

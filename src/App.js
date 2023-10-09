@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Home from './pages/Home'
 import Cart from './pages/Cart'
 import Favourites from './pages/Favourites'
@@ -10,6 +10,7 @@ import SignIn from './pages/SignIn'
 export const SearchContext = React.createContext()
 
 function App() {
+  
   const [searchText, setSearchText] = useState('')
   return (
     <>

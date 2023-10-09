@@ -5,20 +5,25 @@ import CardSkeleton from '../components/CardSkeleton'
 import Sort from '../components/Sort'
 import ReactPaginate from 'react-paginate';
 import { SearchContext } from '../App'
+import { useSelector} from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { setGenre } from '../redux/slices/filterSlice'
 
 const Home = () => {
+    const dispatch = useDispatch()
     const {searchText} = React.useContext(SearchContext)
     const [games, setGames] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [currentPage, setCurrentPage] = useState(0)
-    const [genreValue, setGenreValue] = useState({
-        genreProperty: 'all'
-    })
     const [sortIcon, setSortIcon] = useState(false)
+    const genreValue = useSelector((state) => state.filter.genre)
     const [sortType, setSortType] = useState({
         name: 'рейтингу',
         sortProperty: 'rating'
     })
+    const setGenreValue = (id) => {
+        dispatch(setGenre(id))
+    }
     const swithcher = require('ai-switcher-translit');
 
     useEffect(() => {
@@ -37,7 +42,7 @@ const Home = () => {
         <>
         <section className="main-section">
         <div className="genre__section">
-        <Genres setCurrentPage={setCurrentPage} genreValue = {genreValue} setGenreValue = {(i) => setGenreValue(i)}/>
+        <Genres setCurrentPage={setCurrentPage} genreValue = {genreValue} setGenreValue = {setGenreValue}/>
         <Sort sortIcon ={sortIcon} setSortIcon = {setSortIcon} sortType = {sortType} onClickType = {(i) => setSortType(i)}/>
         </div>
             <div className="card-holder">

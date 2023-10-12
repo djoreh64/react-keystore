@@ -8,7 +8,8 @@ const initialState = {
   sort: {
     name: 'рейтингу',
     sortProperty: 'rating'
-  }
+  },
+  sortIcon: false
 } 
 
 const filterSlice = createSlice({
@@ -18,8 +19,14 @@ const filterSlice = createSlice({
     setGenre(state, action) {
       state.genre = action.payload
     },
+    setSort(state, action) {
+      state.sort = action.payload
+    },
+    setSortIcon(state,action) {
+      state.sortIcon = action.payload
+    }
   }
 })
 
-export const { setGenre } = filterSlice.actions
+export const { setGenre, setSort, setSortIcon } = filterSlice.actions
 export default filterSlice.reducer

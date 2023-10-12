@@ -5,25 +5,16 @@ import CardSkeleton from '../components/CardSkeleton'
 import Sort from '../components/Sort'
 import ReactPaginate from 'react-paginate';
 import { SearchContext } from '../App'
-import { useSelector} from 'react-redux'
-import { useDispatch } from 'react-redux'
-import { setGenre } from '../redux/slices/filterSlice'
+import { useSelector } from 'react-redux'
 
 const Home = () => {
-    const dispatch = useDispatch()
     const {searchText} = React.useContext(SearchContext)
     const [games, setGames] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [currentPage, setCurrentPage] = useState(0)
-    const [sortIcon, setSortIcon] = useState(false)
-    const genreValue = useSelector((state) => state.filter.genre)
-    const [sortType, setSortType] = useState({
-        name: 'рейтингу',
-        sortProperty: 'rating'
-    })
-    const setGenreValue = (id) => {
-        dispatch(setGenre(id))
-    }
+    const sortIcon = useSelector(state => state.filter.sortIcon)
+    const sortType = useSelector(state => state.filter.sort)
+    const genreValue = useSelector(state => state.filter.genre)
     const swithcher = require('ai-switcher-translit');
 
     useEffect(() => {
@@ -42,8 +33,8 @@ const Home = () => {
         <>
         <section className="main-section">
         <div className="genre__section">
-        <Genres setCurrentPage={setCurrentPage} genreValue = {genreValue} setGenreValue = {setGenreValue}/>
-        <Sort sortIcon ={sortIcon} setSortIcon = {setSortIcon} sortType = {sortType} onClickType = {(i) => setSortType(i)}/>
+        <Genres setCurrentPage={setCurrentPage}/>
+        <Sort/>
         </div>
             <div className="card-holder">
                 {isLoading
@@ -55,15 +46,15 @@ const Home = () => {
                     return false
                 }).map(game => {return <Card key={game.cover} {...game}/>})}
             </div>
-             <ReactPaginate
+             {games.length > 10 && <ReactPaginate
                 className='pagination'
                 breakLabel="..."
                 nextLabel=">"
-                pageCount={games.length < 10 ? 1 : 2}
+                pageCount={2}
                 onPageChange={(n) => setCurrentPage(n.selected)}
                 previousLabel="< "
                 renderOnZeroPageCount={null}
-            />
+            />}
         </section>
         </>  
     )

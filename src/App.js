@@ -10,11 +10,11 @@ import SignIn from './pages/SignIn'
 export const SearchContext = React.createContext()
 
 function App() {
-  
+  const [searchValue, setSearchValue] = useState('')
   const [searchText, setSearchText] = useState('')
   return (
     <>
-    <SearchContext.Provider value={{searchText, setSearchText}}>
+    <SearchContext.Provider value={{searchText, setSearchText, searchValue, setSearchValue}}>
       <Header/>
       <main className="main">
           <Routes>

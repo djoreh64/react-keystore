@@ -6,6 +6,7 @@ import Sort from '../components/Sort'
 import ReactPaginate from 'react-paginate';
 import { SearchContext } from '../App'
 import { useSelector } from 'react-redux'
+import axios from 'axios'
 
 const Home = () => {
     const {searchText} = React.useContext(SearchContext)
@@ -19,12 +20,11 @@ const Home = () => {
 
     useEffect(() => {
         setIsLoading(true)
-        fetch(`https://6516e83f09e3260018ca764a.mockapi.io/items?genres=${genreValue.genreProperty !== 'all' ? `${genreValue.genreProperty}` : ``}&sortBy=${sortType.sortProperty}${sortIcon ? '&order=asc' : '&order=desc'}&page=${currentPage + 1}&limit=20`)
-        .then((res) => {
-            return res.json();
-        })
-        .then((arr) => {
-            setGames(arr)
+        window.scrollTo(0,0)
+        axios
+        .get(`https://6516e83f09e3260018ca764a.mockapi.io/items?genres=${genreValue.genreProperty !== 'all' ? `${genreValue.genreProperty}` : ``}&sortBy=${sortType.sortProperty}${sortIcon ? '&order=asc' : '&order=desc'}&page=${currentPage + 1}&limit=20`)
+        .then(res => {
+            setGames(res.data)
             setIsLoading(false)
         })
     }, [genreValue, sortType, sortIcon, currentPage])
@@ -55,6 +55,7 @@ const Home = () => {
                 previousLabel="< "
                 renderOnZeroPageCount={null}
             />}
+            
         </section>
         </>  
     )

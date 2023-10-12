@@ -4,9 +4,9 @@ import { useSelector, useDispatch } from "react-redux";
 function Genres({setCurrentPage}) {
   const dispatch = useDispatch()
   const genreValue = useSelector(state => state.filter.genre)
-    const setGenreValue = (id) => {
-        dispatch(setGenre(id))
-    }
+  const setGenreValue = (id) => {
+      dispatch(setGenre(id))
+  }
   const genres = [
     {name: 'Все', genreProperty: 'all'},
     {name: 'Экшен', genreProperty: 'action'},

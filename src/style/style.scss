@@ -215,6 +215,8 @@ a {
         &.checked-genre {
             box-shadow: 0 0 15px rgba(232, 232, 232, .2), 0 0 30px rgba(232, 232, 232, .05);
             border-radius: 20px;
+            pointer-events: none;
+            cursor: pointer;
             background-color: #E8E8E8;
             color: #1F1F1F;
         }

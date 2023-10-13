@@ -12,16 +12,25 @@ function Sort() {
   const sortType = useSelector(state => state.filter.sort)
   const sortIcon = useSelector(state => state.filter.sortIcon)
   const [activeSort, setActiveSort] = useState(false)
+  const sortRef = React.useRef()
   const onClickListItem = (i) => {
     dispatch(setSort(i))
     setActiveSort(false)
   }
   const setSortIconValue = () => {
     dispatch(setSortIcon(!sortIcon))
-} 
+  } 
+
+  React.useEffect(() => {
+    document.body.addEventListener('click', (e) => {
+      if(!e.composedPath().includes(sortRef.current)) {
+        setActiveSort(false)  
+      }
+    })
+  }, [])
 
     return (
-        <div className='genre__section_sort'>
+        <div ref={sortRef} className='genre__section_sort'>
           <a href="#" onClick={() => setSortIconValue(!sortIcon)}><svg className={sortIcon ? 'sort_icon' : 'sort_icon active'} width="66" height="42" viewBox="0 0 66 42" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M33 0L65.0429 42H0.957062L33 0Z" fill="#E8E8E8"/>
           </svg></a>

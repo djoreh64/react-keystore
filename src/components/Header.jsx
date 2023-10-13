@@ -42,11 +42,11 @@ function Header() {
                   </div>
               </div>
           </nav>
-          {/* <>
+          <>
               <div className="dropdown_btn" onClick={() => {setActiveMenu(!activeMenu)}}><span className={activeMenu ? 'dropdown-icon active' : 'dropdown-icon'}></span></div>
               <div className={activeMenu ? "dropdown": "dropdown hide"}>
               <div className="search-holder">
-                  <input value={searchValue} onChange={(e) => {setSearchText(e.target.value)}} placeholder="Найти игру или дополнение" maxLength={30} className="nav_search" type="search"/>
+                  <input value={value} onChange={(e) => {onChangeInput(e)}} placeholder="Найти игру или дополнение" maxLength={30} className="nav_search" type="search"/>
                   <svg className="search__icon" width="28" height="28" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path className="search__icon_path" d="M9.51761 20.5049L2 28M6.33333 12.8333C6.33333 18.8164 11.1836 23.6667 17.1667 23.6667C23.1498 23.6667 28 18.8164 28 12.8333C28 6.85024 23.1498 2 17.1667 2C11.1836 2 6.33333 6.85024 6.33333 12.8333Z" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
@@ -64,7 +64,7 @@ function Header() {
                   </div>
               </div>
               </div>
-              </> */}
+              </>
       </header>
     )
   }

@@ -10,12 +10,13 @@ function Genres({setCurrentPage}) {
   const genres = [
     {name: 'Все', genreProperty: 'all'},
     {name: 'Экшен', genreProperty: 'action'},
-    {name: 'Стратегии', genreProperty: 'strategy'},
     {name: 'Шутеры', genreProperty: 'shooter'},
+    {name: 'Стратегии', genreProperty: 'strategy'},
+    {name: 'Головоломки', genreProperty: 'puzzle'},
     {name: 'Хорроры', genreProperty: 'horror'},
     {name: 'Платформеры', genreProperty: 'platformer'},
     {name: 'Рогалики', genreProperty: 'roguelike'},
-    {name: 'Метроидвании', genreProperty: 'metroidvania'}
+    {name: 'Метроидвании', genreProperty: 'metroidvania'},
   ]
     return (
         <div className="genres__holder">

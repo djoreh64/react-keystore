@@ -20,7 +20,6 @@ const Home = () => {
 
     useEffect(() => {
         setIsLoading(true)
-        window.scrollTo(0,0)
         axios
         .get(`https://6516e83f09e3260018ca764a.mockapi.io/items?genres=${genreValue.genreProperty !== 'all' ? `${genreValue.genreProperty}` : ``}&sortBy=${sortType.sortProperty}${sortIcon ? '&order=asc' : '&order=desc'}&page=${currentPage + 1}&limit=20`)
         .then(res => {
@@ -44,7 +43,7 @@ const Home = () => {
                         return true
                     } 
                     return false
-                }).map(game => {return <Card key={game.cover} {...game}/>})}
+                }).map(game => {return <Card key={game.name} {...game}/>})}
             </div>
              {games.length > 10 && <ReactPaginate
                 className='pagination'

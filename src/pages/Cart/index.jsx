@@ -1,9 +1,10 @@
 import styles from './Cart.module.scss'
 import CartItem from '../../components/CartItem'
+import { useSelector, useDispatch } from 'react-redux'
 
 const Cart = () => {
-    const cartItems = []
-
+    const cartItems = useSelector(state => state.cart.items)
+    const totalPrice = useSelector(state => state.cart.totalPrice)
     return (
         <div className={styles.cart}>
         {cartItems.length > 0 && <h1 className={styles.cart_headline}>Корзина</h1>}
@@ -14,7 +15,11 @@ const Cart = () => {
                     return <CartItem key = {i} {...item}/>
                 })}
             </div>
-            {cartItems.length > 0 && <div className={styles.cart_right}></div>}
+            {cartItems.length > 0 && 
+            <div className={styles.cart_right}>
+                <h2 className = {styles.cart_right_headline}>Итоговая стоимость: <br/><span>{totalPrice} ₽</span></h2>
+                <a className = {styles.cart_right_button}>Оформить заказ</a>
+            </div>}
         </div>
         </div>
     )

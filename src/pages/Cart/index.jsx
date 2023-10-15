@@ -1,6 +1,6 @@
 import styles from './Cart.module.scss'
 import CartItem from '../../components/CartItem'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 const Cart = () => {
     const cartItems = useSelector(state => state.cart.items)
@@ -11,8 +11,8 @@ const Cart = () => {
         {cartItems.length == 0 && <h1 className={styles.cart_empty_headline}>Корзина пуста!</h1>}
         <div className={styles.cart_content}>
             <div className={styles.cart_items}>
-                {cartItems.map((item, i) => {
-                    return <CartItem key = {i} {...item}/>
+                {cartItems.map((item) => {
+                    return <CartItem key = {item.name} {...item}/>
                 })}
             </div>
             {cartItems.length > 0 && 

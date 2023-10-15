@@ -38,12 +38,8 @@ const Home = () => {
             <div className="card-holder">
                 {isLoading
                 ? [...new Array(20)].map((_, i) => {return <CardSkeleton key = {i}/>}) 
-                : games.filter((obj) => {
-                    if (swithcher.getSwitch(obj.name.toLowerCase(), {type: 'engru',}).includes(searchText.toLowerCase()) || obj.name.toLowerCase().includes(searchText.toLowerCase())) {
-                        return true
-                    } 
-                    return false
-                }).map(game => {return <Card key={game.name} {...game}/>})}
+                : games.filter((obj) => swithcher.getSwitch(obj.name.toLowerCase(), {type: 'engru',}).includes(searchText.toLowerCase()) || obj.name.toLowerCase().includes(searchText.toLowerCase()))
+                .map(game => {return <Card key={game.name} {...game}/>})}
             </div>
              {games.length > 10 && <ReactPaginate
                 className='pagination'

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch} from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import { addItem } from '../redux/slices/cartSlice'
 
 function Card({name, price, cover}) {
     const dispatch = useDispatch()
+    const cartItem = useSelector(state => state.cart.items.find(obj => obj.name === name))
     const onClickAdd = () => {
         const item = {
             name,
@@ -16,8 +17,7 @@ function Card({name, price, cover}) {
 
     return (
         <div className="card">
-            {<a onClick={onClickAdd} className='card__add'>В корзину</a>}
-            {/* {cartItems.length>0 && <Link to='/cart' className='card__add'>В корзине</Link>} */}
+            <Link to={cartItem ? '/cart' : ''} onClick={!cartItem ? onClickAdd: ''} className='card__add'>{cartItem ? 'В корзинe' : 'В корзину'}</Link>
             <div className="card__img" style={{backgroundImage: `url(${cover})`}}/>
             <div className="card__text">
                 <div className='card__text_holder'>

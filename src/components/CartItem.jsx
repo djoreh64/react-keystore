@@ -1,10 +1,12 @@
 import React from "react";
 import styles from '../pages/Cart/Cart.module.scss'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { removeItem } from '../redux/slices/cartSlice'
 
 function CartItem ( {name, price, cover} ) {
     const dispatch = useDispatch()
+    const cartItem = useSelector(state => state.cart.items.find(obj => obj.name === name))
+    const cartCount = cartItem.count
     const onClickRemove = () => {
         dispatch(removeItem(name))
     }
@@ -20,6 +22,11 @@ function CartItem ( {name, price, cover} ) {
                 <div className={styles.cart_text_holder}>
                     <p className={styles.cart_name}>{name}</p>
                     <p className={styles.cart_price}>{price} ₽</p>
+                    <div className={styles.cart_counter}>
+                        <div className={styles.cart_counter_minus}>-</div>
+                        <div className={styles.cart_counter_value}>{cartCount}</div>
+                        <div className={styles.cart_counter_plus}>+</div>
+                    </div>
                 </div>
             </div>
         </div>

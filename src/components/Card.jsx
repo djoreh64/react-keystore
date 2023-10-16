@@ -1,5 +1,6 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch} from 'react-redux';
 import { addItem } from '../redux/slices/cartSlice'
 
 function Card({name, price, cover}) {
@@ -8,14 +9,15 @@ function Card({name, price, cover}) {
         const item = {
             name,
             price,
-            cover
+            cover   
         }
         dispatch(addItem(item))
     }
 
     return (
         <div className="card">
-            <a onClick={() => onClickAdd()} className='card__add'>В корзину</a>
+            {<a onClick={onClickAdd} className='card__add'>В корзину</a>}
+            {/* {cartItems.length>0 && <Link to='/cart' className='card__add'>В корзине</Link>} */}
             <div className="card__img" style={{backgroundImage: `url(${cover})`}}/>
             <div className="card__text">
                 <div className='card__text_holder'>

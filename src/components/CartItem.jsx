@@ -1,12 +1,21 @@
 import React from "react";
 import styles from '../pages/Cart/Cart.module.scss'
 import { useDispatch, useSelector } from 'react-redux';
-import { removeItem } from '../redux/slices/cartSlice'
+import { removeItem, decrementCount, incrementCount } from '../redux/slices/cartSlice'
 
-function CartItem ( {name, price, cover} ) {
+function CartItem ( {name, price, cover, count} ) {
     const dispatch = useDispatch()
     const cartItem = useSelector(state => state.cart.items.find(obj => obj.name === name))
-    const cartCount = cartItem.count
+    const onClickMinus = () => {
+        if (cartItem.count > 1) {
+            dispatch(decrementCount(name))
+        } else {
+            dispatch(removeItem(name))
+        }
+    }
+    const onClickPlus = () => {
+        dispatch(incrementCount(name))
+    }
     const onClickRemove = () => {
         dispatch(removeItem(name))
     }
@@ -23,9 +32,9 @@ function CartItem ( {name, price, cover} ) {
                     <p className={styles.cart_name}>{name}</p>
                     <p className={styles.cart_price}>{price} ₽</p>
                     <div className={styles.cart_counter}>
-                        <div className={styles.cart_counter_minus}>-</div>
-                        <div className={styles.cart_counter_value}>{cartCount}</div>
-                        <div className={styles.cart_counter_plus}>+</div>
+                        <div onClick={onClickMinus} className={styles.cart_counter_minus}>-</div>
+                        <div className={styles.cart_counter_value}>{count}</div>
+                        <div onClick={onClickPlus} className={styles.cart_counter_plus}>+</div>
                     </div>
                 </div>
             </div>

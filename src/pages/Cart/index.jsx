@@ -8,7 +8,7 @@ const Cart = () => {
     const totalPrice = useSelector(state => state.cart.totalPrice)
     return (
         <div className={styles.cart}>
-        {cartItems.length > 0 && <h1 className={styles.cart_headline}>Корзина</h1>}
+        
         {cartItems.length === 0 &&
         <div className={styles.cart_empty}>
             <h1 className={styles.cart_empty_headline}>Корзина пуста!</h1>

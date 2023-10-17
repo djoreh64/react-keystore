@@ -76,10 +76,10 @@
         background-color: #1F1F1F;
         border-radius: 10px;
         margin-bottom: 41px;
-        transition: .4s ease-out;
+        transition: .3s ease-out;
 
         &:hover {
-            background-color: #292929;
+            transform: translateY(-5px);
         }
 
         @media (max-width: 600px) {
@@ -91,16 +91,26 @@
         display: flex;
         align-items: center;
         margin-top: 40px;
+        overflow: hidden;
+        
 
         &_minus, &_plus{
             transition: .2s ease-out;
             font-weight: 500;
             background-color: #181818;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             padding: 10px;
+            max-width: 10px;
+            min-width: 10px;
             color: #e8e8e8;
         }
 
         &_value {
+            text-align: center;
+            max-width: 15px;
+            min-width: 15px;
             font-weight: 400;
             background-color: #181818;
             padding: 10px 20px;
@@ -183,6 +193,11 @@
         align-items: start;
         justify-content: space-between;
         flex-direction: column;
+        transition: .4s ease-out;
+
+        &:hover {
+            transform: translateY(-5px);
+        }
 
         &_headline {
             line-height: 30px;

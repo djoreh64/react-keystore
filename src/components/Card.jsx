@@ -7,17 +7,20 @@ function Card({name, price, cover}) {
     const dispatch = useDispatch()
     const cartItem = useSelector(state => state.cart.items.find(obj => obj.name === name))
     const onClickAdd = () => {
-        const item = {
-            name,
-            price,
-            cover   
+        if (!cartItem) {
+            const item = {
+                name,
+                price,
+                cover,
+                count: 1
+            }
+            dispatch(addItem(item))
         }
-        dispatch(addItem(item))
     }
 
     return (
         <div className="card">
-            <Link to={cartItem ? '/cart' : ''} onClick={!cartItem ? onClickAdd: ''} className='card__add'>{cartItem ? 'В корзинe' : 'В корзину'}</Link>
+            <Link to={cartItem ? '/cart' : ''} onClick={onClickAdd} className='card__add'>{cartItem ? 'В корзинe' : 'В корзину'}</Link>
             <div className="card__img" style={{backgroundImage: `url(${cover})`}}/>
             <div className="card__text">
                 <div className='card__text_holder'>

@@ -1,9 +1,24 @@
+import { useSelector } from 'react-redux'
 import styles from './Favourites.module.scss'
+import FavouritesItem from '../../components/FavouritesItem'
+import { Link } from 'react-router-dom'
 
 const Favourites = () => {
+    const favouritesItems = useSelector(state => state.favourites.items)
+
     return (
         <div className={styles.main}>
-        <h1>Избранное</h1>
+            {favouritesItems.length === 0 &&
+                <div className={styles.favourites__empty}>
+                    <h1 className={styles.favourites__empty_headline}>Список избранного пуст!</h1>
+                    <Link to='/#' className={styles.favourites__button}>На главную</Link>
+                </div>
+            }
+            <div className={styles.favourites}>
+                {favouritesItems.map((item) => {
+                    return <FavouritesItem key = {item.name} {...item}/>
+                })}
+            </div>
         </div>
     )
 }

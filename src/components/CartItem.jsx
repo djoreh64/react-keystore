@@ -9,8 +9,6 @@ function CartItem ( {name, price, cover, count} ) {
     const onClickMinus = () => {
         if (cartItem.count > 1) {
             dispatch(decrementCount(name))
-        } else {
-            dispatch(removeItem(name))
         }
     }
     const onClickPlus = () => {

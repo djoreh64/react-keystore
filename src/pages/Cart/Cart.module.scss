@@ -38,7 +38,7 @@
         &_headline {
             color: #e8e8e8;
             width: 100%;
-            font-size: 100px;
+            font-size: calc(50px + 50 * (100vw / 1920));
             display: flex;
             text-align: center;
             align-items: center;

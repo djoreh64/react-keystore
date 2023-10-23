@@ -5,12 +5,14 @@ import CardSkeleton from '../components/CardSkeleton'
 import Sort from '../components/Sort'
 import ReactPaginate from 'react-paginate';
 import { SearchContext } from '../App'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { setGames } from '../redux/slices/gamesSlice'
 import axios from 'axios'
 
 const Home = () => {
+    const dispatch = useDispatch()
     const {searchText} = React.useContext(SearchContext)
-    const [games, setGames] = useState([])
+    const games = useSelector(state => state.games.games)
     const [isLoading, setIsLoading] = useState(true)
     const [currentPage, setCurrentPage] = useState(0)
     const sortIcon = useSelector(state => state.filter.sortIcon)
@@ -18,14 +20,19 @@ const Home = () => {
     const genreValue = useSelector(state => state.filter.genre)
     const swithcher = require('ai-switcher-translit');
 
-    useEffect(() => {
-        setIsLoading(true)
-        axios
-        .get(`https://6516e83f09e3260018ca764a.mockapi.io/items?genres=${genreValue.genreProperty !== 'all' ? `${genreValue.genreProperty}` : ``}&sortBy=${sortType.sortProperty}${sortIcon ? '&order=asc' : '&order=desc'}&page=${currentPage + 1}&limit=20`)
-        .then(res => {
-            setGames(res.data)
+    const fetchGames = async () => {
+        try {
+            setIsLoading(true)
+            const { data } = await axios.get(`https://6516e83f09e3260018ca764a.mockapi.io/items?genres=${genreValue.genreProperty !== 'all' ? `${genreValue.genreProperty}` : ``}&sortBy=${sortType.sortProperty}${sortIcon ? '&order=asc' : '&order=desc'}&page=${currentPage + 1}&limit=20`)
+            dispatch(setGames(data))
             setIsLoading(false)
-        })
+        } catch (err) {
+            alert(`Произошла ошибка: ${err}!`)
+        }
+    }
+
+    useEffect(() => {
+        fetchGames()
     }, [genreValue, sortType, sortIcon, currentPage])
 
     return (

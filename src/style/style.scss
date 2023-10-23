@@ -107,6 +107,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    font-size: calc(12px + 4 * (100vw / 1920));
 
     @media (max-width: 1024px) {
         flex-direction: column;
@@ -118,7 +119,6 @@ a {
         flex-direction: column;
         gap: 50px;
         align-items: start;
-        font-size: .8rem;
     }
 
     &_sort {
@@ -194,8 +194,11 @@ a {
 
     .genre-btn {
         transition: .4s ease-out;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         text-wrap: nowrap;
-        font-size: 14px;
+        font-size: calc(10px + 4 * (100vw / 1920));
         font-weight: 500;
         height: 20px;
         padding: 15px 20px;
@@ -281,13 +284,13 @@ a {
                 opacity: 1;
             }
 
-            .card__add {
+            .card__add-to-fav, .card__add-to-cart {
                 visibility: visible;
                 opacity: 1;
             }
         }
 
-        .card__add {
+        .card__add-to-cart {
             position: absolute;
             background-color: #242424;
             color: #E8E8E8;
@@ -302,10 +305,37 @@ a {
             border-radius: 10px;
             z-index: 100;
 
+            &_active {
+                fill: #e8e8e8;
+            }
+
             &:hover {
                 background-color: #E8E8E8;
                 color: #242424;
                 box-shadow: 0 0 10px #E8E8E8, 0 0 30px #E8E8E8, 0 0 50px #E8E8E8,;
+            }
+        }
+
+        .card__add-to-fav {
+            position: absolute;
+            transition: .1s ease-out;
+            z-index: 999;
+            right: 20px;
+            top: 20px;
+            opacity: 0;
+            bottom: 170px;
+            visibility: hidden;
+
+            path {
+                transition: .3s ease-out;
+            }
+
+            &:hover {
+                fill: #e8e8e8;
+
+                path {
+                    stroke: #e8e8e8
+                }
             }
         }
 

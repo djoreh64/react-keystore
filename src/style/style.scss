@@ -63,8 +63,11 @@ a {
     width: 81.7%;
 }
 
-.pagination {
+.icon_active {
+    fill: #e8e8e8;
+}
 
+.pagination {
     border-radius: 20px;
     bottom: 0;
     z-index: 9999;
@@ -95,11 +98,11 @@ a {
             background-color: #E8E8E8;
             color: #1C1C1C;
         }
-    }
 
-    li:hover {
-        background-color: #E8E8E8;
-        color: #1C1C1C;
+        &:hover, &:focus {
+            background-color: #E8E8E8;
+            color: #1C1C1C;
+        }
     }
 }
 
@@ -135,6 +138,7 @@ a {
             position: absolute;
             transition: .3s ease-in-out;
             top: 50px;
+            margin-left: 10px;
             height: 170px;
             display: flex;
             align-items: center;
@@ -290,7 +294,7 @@ a {
             }
         }
 
-        .card__add-to-cart {
+        &__add-to-cart {
             position: absolute;
             background-color: #242424;
             color: #E8E8E8;
@@ -305,37 +309,35 @@ a {
             border-radius: 10px;
             z-index: 100;
 
-            &_active {
-                fill: #e8e8e8;
+            &.active {
+                background-color: #e8e8e8;
+                color: #242424;
+                box-shadow: 0 0 10px #E8E8E8, 0 0 30px #E8E8E8, 0 0 50px #E8E8E8;
             }
 
             &:hover {
                 background-color: #E8E8E8;
                 color: #242424;
-                box-shadow: 0 0 10px #E8E8E8, 0 0 30px #E8E8E8, 0 0 50px #E8E8E8,;
+                box-shadow: 0 0 10px #E8E8E8, 0 0 30px #E8E8E8, 0 0 50px #E8E8E8;
             }
         }
 
-        .card__add-to-fav {
+        &__add-to-fav {
             position: absolute;
-            transition: .1s ease-out;
+            transition: .4s ease-out;
             z-index: 999;
-            right: 20px;
-            top: 20px;
+            right: 24px;
+            top: 24px;
             opacity: 0;
             bottom: 170px;
             visibility: hidden;
 
             path {
-                transition: .3s ease-out;
+                transition: .2s ease-out;
             }
 
             &:hover {
                 fill: #e8e8e8;
-
-                path {
-                    stroke: #e8e8e8
-                }
             }
         }
 

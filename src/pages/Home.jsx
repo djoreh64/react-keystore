@@ -12,7 +12,7 @@ import axios from 'axios'
 const Home = () => {
     const dispatch = useDispatch()
     const {searchText} = React.useContext(SearchContext)
-    const games = useSelector(state => state.games.games)
+    let games = useSelector(state => state.games.games)
     const [isLoading, setIsLoading] = useState(true)
     const [currentPage, setCurrentPage] = useState(0)
     const sortIcon = useSelector(state => state.filter.sortIcon)
@@ -45,7 +45,7 @@ const Home = () => {
             <div className="card-holder">
                 {isLoading
                 ? [...new Array(20)].map((_, i) => {return <CardSkeleton key = {i}/>}) 
-                : games.filter((obj) => swithcher.getSwitch(obj.name.toLowerCase(), {type: 'engru',}).includes(searchText.toLowerCase()) || obj.name.toLowerCase().includes(searchText.toLowerCase()))
+                : games = games.filter((obj) => swithcher.getSwitch(obj.name.toLowerCase(), {type: 'engru',}).includes(searchText.toLowerCase()) || obj.name.toLowerCase().includes(searchText.toLowerCase()))
                 .map(game => {return <Card key={game.name} {...game}/>})}
             </div>
              {games.length > 10 && <ReactPaginate

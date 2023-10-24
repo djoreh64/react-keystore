@@ -12,23 +12,17 @@ function Header() {
     const {setSearchText} = React.useContext(SearchContext)
     const menuRef = React.useRef()
     const menuIconRef = React.useRef()
-    const cartItemsLength = useSelector(state => state.cart.items.length)
     const updateSearchValue = React.useCallback(
         debounce((str) => {
             setSearchText(str)
         }, 400), []
     )
-    const cartAnimate = () => {
-        
-    }
-    useEffect(() => {
-        cartAnimate()
-    }, [cartItemsLength])
 
     const onChangeInput = (e) => {
         setValue(e.target.value)
         updateSearchValue(e.target.value)
     }
+
     React.useEffect(() => {
         document.body.addEventListener('click', (e) => {
           if(!e.composedPath().includes(menuRef.current)) {

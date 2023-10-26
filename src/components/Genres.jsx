@@ -20,8 +20,8 @@ function Genres({setCurrentPage}) {
   ]
     return (
         <div className="genres__holder">
-          {genres.map((genre, index) => (
-              <a key={index} onClick={() => {
+          {genres.map((genre) => (
+              <a key={genre.name} onClick={() => {
                 setGenreValue(genre);
                 setCurrentPage(0)}} 
                className = {genreValue.genreProperty == genre.genreProperty ? 'genre-btn checked-genre' : 'genre-btn'}>{genre.name}</a>

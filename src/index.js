@@ -1,6 +1,5 @@
 import React from 'react';
 import App from './App';
-import { debounce } from 'lodash';
 import { createRoot } from "react-dom/client";
 import { BrowserRouter} from "react-router-dom"
 import './style/style.scss'

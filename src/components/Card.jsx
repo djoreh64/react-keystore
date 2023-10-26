@@ -21,7 +21,6 @@ function Card({name, price, cover}) {
 
     const onClickFavourites= () => { 
         if (favouriteItem) {
-            console.log(123)
             dispatch(removeFavourite(name))
         } else {
             const item = {

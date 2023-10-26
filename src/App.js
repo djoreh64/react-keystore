@@ -14,18 +14,18 @@ function App() {
   const [searchText, setSearchText] = useState('')
   return (
     <>
-    <SearchContext.Provider value={{searchText, setSearchText, searchValue, setSearchValue}}>
-      <Header/>
-      <main className="main">
-          <Routes>
-            <Route path='/' element= {<Home />}/>
-            <Route path='/cart' element= {<Cart/>}/>
-            <Route path='/favourites' element= {<Favourites/>}/>
-            <Route path='/signin' element= {<SignIn/>}/>
-            <Route path='*' element= {<NotFound/>}/>
-          </Routes>
-    </main>
-    </SearchContext.Provider>
+      <SearchContext.Provider value={{searchText, setSearchText, searchValue, setSearchValue}}>
+        <Header/>
+          <main className="main">
+              <Routes>
+                <Route path='/' element= {<Home />}/>
+                <Route path='/cart' element= {<Cart/>}/>
+                <Route path='/favourites' element= {<Favourites/>}/>
+                <Route path='/signin' element= {<SignIn/>}/>
+                <Route path='*' element= {<NotFound/>}/>
+              </Routes>
+        </main>
+      </SearchContext.Provider>
     </>
   );
 }

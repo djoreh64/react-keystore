@@ -4,6 +4,15 @@
     align-items: center;
     justify-content: center;
 
+    @media (max-width: 1024px) {
+        height: 100px;
+        margin-bottom: 40px;
+
+        .dropdown-icon {
+            top: -65px !important;
+        }
+    }
+
     .search-holder {
             position: relative;
             width: 36%;

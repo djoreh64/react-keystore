@@ -6,13 +6,12 @@ import Sort from '../components/Sort'
 import ReactPaginate from 'react-paginate';
 import { SearchContext } from '../App'
 import { useSelector, useDispatch } from 'react-redux'
-import { setGames } from '../redux/slices/gamesSlice'
-import axios from 'axios'
+import { fetchGames } from '../redux/slices/gamesSlice'
 
 const Home = () => {
     const dispatch = useDispatch()
     const {searchText} = React.useContext(SearchContext)
-    let games = useSelector(state => state.games.games)
+    let { games, status} = useSelector(state => state.games)
     const [isLoading, setIsLoading] = useState(true)
     const [currentPage, setCurrentPage] = useState(0)
     const sortIcon = useSelector(state => state.filter.sortIcon)
@@ -20,11 +19,15 @@ const Home = () => {
     const genreValue = useSelector(state => state.filter.genre)
     const swithcher = require('ai-switcher-translit');
 
-    const fetchGames = async () => {
+    const getGames = async () => {
+        setIsLoading(true)
         try {
-            setIsLoading(true)
-            const { data } = await axios.get(`https://6516e83f09e3260018ca764a.mockapi.io/items?genres=${genreValue.genreProperty !== 'all' ? `${genreValue.genreProperty}` : ``}&sortBy=${sortType.sortProperty}${sortIcon ? '&order=asc' : '&order=desc'}&page=${currentPage + 1}&limit=20`)
-            dispatch(setGames(data))
+            dispatch(fetchGames({
+                genreValue,
+                sortType,
+                sortIcon,
+                currentPage
+            }))
             setIsLoading(false)
         } catch (err) {
             alert(`Произошла ошибка: ${err}!`)
@@ -32,33 +35,32 @@ const Home = () => {
     }
 
     useEffect(() => {
-        fetchGames()
+        getGames()
     }, [genreValue, sortType, sortIcon, currentPage])
 
     return (
         <>
-        <section className="main-section">
-        <div className="genre__section">
-        <Genres setCurrentPage={setCurrentPage}/>
-        <Sort/>
-        </div>
-            <div className="card-holder">
-                {isLoading
-                ? [...new Array(20)].map((_, i) => {return <CardSkeleton key = {i}/>}) 
-                : games = games.filter((obj) => swithcher.getSwitch(obj.name.toLowerCase(), {type: 'engru',}).includes(searchText.toLowerCase()) || obj.name.toLowerCase().includes(searchText.toLowerCase()))
-                .map(game => {return <Card key={game.name} {...game}/>})}
+            <section className="main-section">
+            <div className="genre__section">
+            <Genres setCurrentPage={setCurrentPage}/>
+            <Sort/>
             </div>
-             {games.length > 10 && <ReactPaginate
-                className='pagination'
-                breakLabel="..."
-                nextLabel=">"
-                pageCount={2}
-                onPageChange={(n) => setCurrentPage(n.selected)}
-                previousLabel="< "
-                renderOnZeroPageCount={null}
-            />}
-            
-        </section>
+                <div className="card-holder">
+                    {status === 'loading'
+                    ? [...new Array(20)].map((_, i) => {return <CardSkeleton key = {i}/>}) 
+                    : games = games.filter((obj) => swithcher.getSwitch(obj.name.toLowerCase(), {type: 'engru',}).includes(searchText.toLowerCase()) || obj.name.toLowerCase().includes(searchText.toLowerCase()))
+                    .map(game => {return <Card key={game.name} {...game}/>})}
+                </div>
+                {games.length > 10 && <ReactPaginate
+                    className='pagination'
+                    breakLabel="..."
+                    nextLabel=">"
+                    pageCount={2}
+                    onPageChange={(n) => setCurrentPage(n.selected)}
+                    previousLabel="< "
+                    renderOnZeroPageCount={null}
+                />}
+            </section>
         </>  
     )
 }

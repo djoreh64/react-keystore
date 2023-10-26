@@ -3,8 +3,6 @@ import { Link } from "react-router-dom"
 import React from "react"
 import { SearchContext } from "../App"
 import { debounce } from "lodash"
-import { useSelector } from "react-redux"
-import { useEffect } from "react"
 
 function Header() {
     const [activeMenu, setActiveMenu] = useState(false)

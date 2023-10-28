@@ -114,13 +114,13 @@ a {
 
     @media (max-width: 1024px) {
         flex-direction: column;
-        gap: 50px;
+        gap: 20px;
         align-items: end;
     }
 
     @media (max-width: 400px) {
         flex-direction: column;
-        gap: 50px;
+        gap: 20px;
         align-items: start;
     }
 
@@ -132,6 +132,7 @@ a {
         align-items: center;
         justify-content: center;
         gap: 10px;
+        margin-left: 30px;
         position: relative;
 
         .sort_popup {
@@ -192,7 +193,10 @@ a {
 
 .genres__holder {
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+    overflow-x: scroll;
     gap: 15px;
     transition: .4s ease-out;
 

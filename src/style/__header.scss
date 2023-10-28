@@ -160,23 +160,16 @@
     
     .dropdown_btn {
         position: absolute;
-        width: 30px;
-        height: 30px;
-        display: none;
         right: calc(9.15%);
-        top: 128px;
-        transform: translate(0, 50%);
+        top: 80px;
+        transform: translate(-50%, -50%);
         cursor: pointer;
     }
 
     .dropdown-icon {
         cursor: pointer;
-        transition: transform .4s ease-out, height .1s ease-in-out;
         display: none;
-        transform: translate(-50%, 50%);
-        top: 50%;
-        left: 50%;
-        position: absolute;
+        transition: transform .4s ease-out, height .1s ease-in-out;
         width: 25px;
         height: 3px;
         background-color: #E8E8E8;

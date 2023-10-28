@@ -16,16 +16,21 @@
 .cart {
     width: 81.7%;
     display: flex;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
     row-gap: 58px;
     height: calc(100vh - 256px);
+
+    @media (max-width: 1024px) {
+        height: calc(100vh - 140px);
+    }
 
     &_empty {
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        height: calc(100vh - 400px);
         row-gap: 30px;
 
         &_button {
@@ -42,7 +47,7 @@
         }
     
         &_headline {
-            @include fontSize(80, 20);
+            @include fontSize(80, 40);
             color: #e8e8e8;
             display: flex;
             text-align: center;

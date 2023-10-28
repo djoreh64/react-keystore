@@ -1,3 +1,14 @@
+@mixin fontSize ($maxSize, $minSize) {
+    $addSize: $maxSize - $minSize;
+    $addMinSize: $addSize + $addSize * .7;
+    @media (max-width: 767px) {
+        font-size: calc(#{$minSize + px} + #{$addMinSize} * ((100vw - 320px) / 1920));
+    }
+    @media (min-width: 767px) {
+        font-size: calc(#{$minSize + px} + #{$addSize} * ((100vw) / 1920));
+    }
+}
+
 * {
     color: inherit;
 }
@@ -17,13 +28,17 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        height: calc(100vh - 400px);
+        height: calc(100vh - 256px);
         row-gap: 30px;
+
+        @media (max-width: 1024px) {
+            height: calc(100vh - 140px);
+        }
 
         &_headline {
             color: #e8e8e8;
             width: 100%;
-            font-size: calc(50px + 50 * (100vw / 1920));
+            @include fontSize(80, 40);
             display: flex;
             text-align: center;
             align-items: center;

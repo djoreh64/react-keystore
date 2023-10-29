@@ -1,15 +1,18 @@
 import { useDispatch, useSelector } from 'react-redux'
 import styles from '../pages/Favourites/Favourites.module.scss'
 import { removeFavourite, addFavourite } from '../redux/slices/favouritesSlice'
+import { Link } from 'react-router-dom'
 
-const FavouritesItem = ( {name, price, cover} ) => {
+const FavouritesItem = ( {id, name, price, cover} ) => {
     const favouriteItem = useSelector(state => state.favourites.items.find(obj => obj.name === name))
     const dispatch = useDispatch()
-    const onClickRemove = () => { 
+    const onClickRemove = (e) => { 
+        e.preventDefault()
         dispatch(removeFavourite(name))
     }
     
     return (
+    <Link to={`/games/${id}`}>
     <div className={styles.favourites__item}>
         <div className={styles.favourites__holder}>
             <a onClick = {onClickRemove} className = {styles.favourites__remove}>
@@ -23,7 +26,8 @@ const FavouritesItem = ( {name, price, cover} ) => {
                 <p className={styles.favourites__price}>{price} ₽</p>
             </div>
         </div>
-    </div>)
+    </div>
+    </Link>)
 }
 
 export default FavouritesItem

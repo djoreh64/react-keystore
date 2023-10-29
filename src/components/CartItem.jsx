@@ -2,22 +2,28 @@ import React from "react";
 import styles from '../pages/Cart/Cart.module.scss'
 import { useDispatch, useSelector } from 'react-redux';
 import { removeItem, decrementCount, incrementCount } from '../redux/slices/cartSlice'
+import { Link, useParams } from "react-router-dom";
 
-function CartItem ( {name, price, cover, count} ) {
+const CartItem = ({id, name, price, cover, count}) => {
+    const { urlID } = useParams()
     const dispatch = useDispatch()
     const cartItem = useSelector(state => state.cart.items.find(obj => obj.name === name))
-    const onClickMinus = () => {
+    const onClickMinus = (e) => {
+        e.preventDefault()
         if (cartItem.count > 1) {
             dispatch(decrementCount(name))
-        }
+        } 
     }
-    const onClickPlus = () => {
+    const onClickPlus = (e) => {
+        e.preventDefault()
         dispatch(incrementCount(name))
     }
-    const onClickRemove = () => {
+    const onClickRemove = (e) => {
+        e.preventDefault()
         dispatch(removeItem(name))
     }
     return (
+        <Link to={`/games/${id}`}>
         <div className={styles.cart_item}>
             <div className={styles.cart_holder}>
                 <a onClick = {onClickRemove} className = {styles.cart__remove}>
@@ -37,6 +43,7 @@ function CartItem ( {name, price, cover, count} ) {
                 </div>
             </div>
         </div>
+        </Link>
     )
 }
 

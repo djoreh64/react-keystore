@@ -16,8 +16,6 @@
 .cart {
     width: 81.7%;
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
     row-gap: 58px;
     height: calc(100vh - 256px);
@@ -32,6 +30,11 @@
         justify-content: center;
         flex-direction: column;
         row-gap: 30px;
+        height: 100%;
+
+        @media (max-width: 1024px) {
+            height: calc(100vh - 140px);
+        }
 
         &_button {
             padding: 10px 40px;

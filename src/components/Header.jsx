@@ -1,18 +1,20 @@
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import React from "react"
-import { SearchContext } from "../App"
 import { debounce } from "lodash"
+import { setSearchValue } from "../redux/slices/filterSlice"
+import { useDispatch } from "react-redux"
 
 function Header() {
+    const location = useLocation()
     const [activeMenu, setActiveMenu] = useState(false)
     const [value, setValue] = useState('')
-    const {setSearchText} = React.useContext(SearchContext)
+    const dispatch = useDispatch()
     const menuRef = React.useRef()
     const menuIconRef = React.useRef()
     const updateSearchValue = React.useCallback(
         debounce((str) => {
-            setSearchText(str)
+            dispatch(setSearchValue(str))
         }, 400), []
     )
 

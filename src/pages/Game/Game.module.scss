@@ -1,0 +1,116 @@
+@import '/src/style/style.scss';
+
+.game {
+    width: 81.7%;
+    display: flex;
+    gap: 55px;
+    box-sizing: border-box;
+    height: calc(100vh - 256px);
+
+    &__skeleton {
+        position: relative;
+        display: flex;
+    }
+
+    @media (max-width: 1024px) {
+        height: 50vh;
+    }
+
+    @media (max-width: 600px) {
+        flex-direction: column;
+    }
+
+    &__add_to_cart {
+        color: #e8e8e8;
+        padding: 20px 10px;
+        width: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid #e8e8e8;
+        border-radius: 15px;
+        transition: .4s ease-out;
+
+        @media (max-width: 600px) {
+            box-sizing: border-box;
+            width: 100%;    
+        }
+
+        &_active {
+            color: #1c1c1c;
+            background-color: #e8e8e8;
+            padding: 20px 10px;
+            width: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #e8e8e8;
+            border-radius: 15px;
+            box-shadow: 0 0 10px #E8E8E880, 0 0 70px #E8E8E830, 0 0 100px #E8E8E820;
+            transition: .4s ease-out;
+
+            @media (max-width: 600px) {
+                box-sizing: border-box;
+                width: 100%;    
+            }   
+        }
+
+        &:hover {
+            color: #1c1c1c;
+            box-shadow: 0 0 10px #E8E8E880, 0 0 70px #E8E8E830, 0 0 100px #E8E8E820;
+            background-color: #e8e8e8;
+        }
+    }
+
+    &__add_to_favourite {
+        cursor: pointer;
+        transition: .2s ease-out;
+        &_active {
+            cursor: pointer;
+            transition: .2s ease-out;
+            fill: #e8e8e8;
+        }
+    }
+
+    &__headlineBlock {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+    }
+
+    &__headline {
+        color: #e8e8e8;
+        @include fontSize(45, 20);
+    }
+
+    &__cover {
+        width: 20vw;
+        max-height: 30vw;
+        border-radius: 15px;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        pointer-events: none;
+
+        @media (max-width: 1024px) {
+            min-width: 200px;
+            min-height: 300px;
+        }
+
+        @media (max-width: 600px) {
+            width: 100%;
+        }
+    }
+
+    &__info {
+        display: flex;
+        gap: 20px;
+        flex-direction: column;
+    }
+
+    &__price {
+        color: #bdbdbd;
+        @include fontSize(20, 15);
+        margin-bottom: 50px;
+    }
+}

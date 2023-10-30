@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/react-keystore/static/css/main.998cfb66.css",
+    "main.js": "/react-keystore/static/js/main.eb8a958f.js",
+    "static/js/787.b525802b.chunk.js": "/react-keystore/static/js/787.b525802b.chunk.js",
+    "index.html": "/react-keystore/index.html",
+    "main.998cfb66.css.map": "/react-keystore/static/css/main.998cfb66.css.map",
+    "main.eb8a958f.js.map": "/react-keystore/static/js/main.eb8a958f.js.map",
+    "787.b525802b.chunk.js.map": "/react-keystore/static/js/787.b525802b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.998cfb66.css",
+    "static/js/main.eb8a958f.js"
+  ]
+}

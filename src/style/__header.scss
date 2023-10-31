@@ -4,6 +4,10 @@
     align-items: center;
     justify-content: center;
 
+    .menu {
+        z-index: 9999;
+    }
+
     @media (max-width: 1024px) {
         height: 100px;
         margin-bottom: 40px;
@@ -80,6 +84,13 @@
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
+
+                .cart_icon_active {
+                    path {
+                        transition: .4s ease-out;
+                        fill: #E8E8E8;
+                    }
+                }
             }
 
             .nav__sign-in {

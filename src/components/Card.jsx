@@ -5,9 +5,9 @@ import { addFavourite, removeFavourite} from '../redux/slices/favouritesSlice'
 
 const Card = ({id, name, price, cover}) => {
     const dispatch = useDispatch()
-    const cartItem = useSelector(state => state.cart.items.find(obj => obj.name === name))
+    const cartItem = useSelector(state => state.cart.items.find(obj => obj.id === id))
     
-    const favouriteItem = useSelector(state => state.favourites.items.find(obj => obj.name === name))
+    const favouriteItem = useSelector(state => state.favourites.items.find(obj => obj.id === id))
     const onClickCartAdd = () => {
         if (!cartItem) {
             const item = {

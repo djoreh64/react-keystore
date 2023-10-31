@@ -47,7 +47,7 @@ function Genres({setCurrentPage}) {
                className = {genreValue.genreProperty == genre.genreProperty ? 'genre-btn checked-genre' : 'genre-btn'}>{genre.name}</a>
           ))}
           <div ref={spreadRef} className="genres__spread">
-            <div onClick={onClickButton} className="genres__button">Ещё</div>
+            <div onClick={onClickButton} className="genres__button genre-btn">Ещё</div>
             <div className={spread ? "genres__ul" : "genres__ul genres__ul_hide"}>
             <ul>
               {genres

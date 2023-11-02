@@ -30,6 +30,7 @@
         justify-content: center;
         flex-direction: column;
         row-gap: 30px;
+        max-height: 650px;
         height: 100%;
 
         @media (max-width: 1024px) {

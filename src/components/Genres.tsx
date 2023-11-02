@@ -2,20 +2,23 @@ import React from 'react'
 import { setGenre } from "../redux/slices/filterSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from 'react';
+type GenresProps = {
+  setCurrentPage: any
+}
 
-function Genres({setCurrentPage}) {
+const Genres: React.FC<GenresProps> = ({setCurrentPage}) => {
   const dispatch = useDispatch()
   const genreValue = useSelector(state => state.filter.genre)
-  const [spread, setSpread] = useState(false)
+  const [spread, setSpread] = useState<boolean>(false)
   const setGenreValue = (id) => {
       dispatch(setGenre(id))
   }
-  const spreadRef = React.useRef()
+  const spreadRef = React.useRef<HTMLDivElement>(null)
   const onClickButton = () => {
     setSpread(!spread)
   }
 
-  document.body.addEventListener('click', (e) => {
+  document.body.addEventListener('click', (e: any) => {
     if (!e.composedPath().includes(spreadRef.current)) {
       setSpread(false)
     }
@@ -36,6 +39,7 @@ function Genres({setCurrentPage}) {
     {name: 'Гонки', genreProperty: 'racing'},
     {name: 'Песочницы', genreProperty: 'sandbox'},
   ]
+  
     return (
         <div className="genres__holder">
           {genres

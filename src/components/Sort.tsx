@@ -2,21 +2,28 @@ import React, { useState } from 'react';
 import { setSort, setSortIcon } from '../redux/slices/filterSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
-const sortList = [
+type SortItem = {
+  name: string,
+  sortProperty: string
+}
+
+const sortList: SortItem[] = [
   {name: 'рейтингу', sortProperty: "rating"},
   {name: 'цене', sortProperty: "price"}, 
   {name: 'алфавиту', sortProperty: "name"}]
 
-function Sort() {
+const Sort: React.FC = () => {
   const dispatch = useDispatch()
   const sortType = useSelector(state => state.filter.sort)
   const sortIcon = useSelector(state => state.filter.sortIcon)
   const [activeSort, setActiveSort] = useState(false)
-  const sortRef = React.useRef()
+  const sortRef = React.useRef<HTMLDivElement>(null)
+
   const onClickListItem = (i) => {
     dispatch(setSort(i))
     setActiveSort(false)
   }
+
   const setSortIconValue = () => {
     dispatch(setSortIcon(!sortIcon))
   } 

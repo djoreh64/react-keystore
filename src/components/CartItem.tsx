@@ -2,10 +2,17 @@ import React from "react";
 import styles from '../pages/Cart/Cart.module.scss'
 import { useDispatch, useSelector } from 'react-redux';
 import { removeItem, decrementCount, incrementCount } from '../redux/slices/cartSlice'
-import { Link, useParams } from "react-router-dom";
+import { Link  } from "react-router-dom";
 
-const CartItem = ({id, name, price, cover, count}) => {
-    const { urlID } = useParams()
+type cartItemProps = {
+    id: string,
+    name: string,
+    price: number,
+    cover: string,
+    count: number
+}
+
+const CartItem: React.FC<cartItemProps> = ({id, name, price, cover, count}) => {
     const dispatch = useDispatch()
     const cartItem = useSelector(state => state.cart.items.find(obj => obj.name === name))
     const onClickMinus = (e) => {

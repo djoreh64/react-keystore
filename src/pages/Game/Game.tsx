@@ -1,19 +1,26 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-import { addItem } from '../../redux/slices/cartSlice'
-import { addFavourite, removeFavourite } from '../../redux/slices/favouritesSlice'
+import { addItem } from '../../redux/slices/cartSlice.js'
+import { addFavourite, removeFavourite } from '../../redux/slices/favouritesSlice.js'
 import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
 import styles from './Game.module.scss'
 import { useState } from 'react'
-import GameSkeleton from '../../components/GameSkeleton'
+import GameSkeleton from '../../components/GameSkeleton.tsx'
 
-const Game = () => {
+type gameType = {
+  id: string, 
+  name: string,
+  price: number, 
+  cover: string
+}
+
+const Game: React.FC = () => {
   const dispatch = useDispatch()
   const [isLoading, setIsLoading] = useState(true)
-  const [game, setGame] = React.useState([])
-  const {id, name, price, cover, genres} = game
+  const [game, setGame] = React.useState<gameType>([])
+  const {id, name, price, cover} = game
   const cartItem = useSelector(state => state.cart.items.find(obj => obj.id === id))
   const favouriteItem = useSelector(state => state.favourites.items.find(obj => obj.id === id))
   const { urlID } = useParams()

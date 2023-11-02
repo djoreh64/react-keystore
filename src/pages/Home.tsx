@@ -1,21 +1,28 @@
 import React, { useEffect, useState } from 'react'
-import Genres from '../components/Genres'
-import Card from '../components/Card'
-import CardSkeleton from '../components/CardSkeleton'
-import Sort from '../components/Sort'
+import Genres from '../components/Genres.tsx'
+import Card from '../components/Card.tsx'
+import CardSkeleton from '../components/CardSkeleton.tsx'
+import Sort from '../components/Sort.tsx'
 import ReactPaginate from 'react-paginate';
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchGames } from '../redux/slices/gamesSlice'
 
-const Home = () => {
+const Home: React.FC = () => {
     const dispatch = useDispatch()
     let { games, status} = useSelector(state => state.games)
-    const [currentPage, setCurrentPage] = useState(0)
+    const [currentPage, setCurrentPage] = useState<number>(0)
     const searchText = useSelector(state => state.filter.search)
     const sortIcon = useSelector(state => state.filter.sortIcon)
     const sortType = useSelector(state => state.filter.sort)
     const genreValue = useSelector(state => state.filter.genre)
     const swithcher = require('ai-switcher-translit');
+
+    type fetchGamesType = {
+        genrevalue: string,
+        sortType: string,
+        sortIcon: boolean,
+        currentPage: number
+    }
 
     const getGames = async () => {
         try {

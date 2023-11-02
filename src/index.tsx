@@ -7,12 +7,12 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux'
 import { store } from './redux/store';
 
-const app = createRoot(document.getElementById('app') as HTMLElement);
-app.render(
+const root = createRoot(document.getElementById('app') as HTMLElement);
+root.render(
   <Provider store={store}>
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>
 );
 

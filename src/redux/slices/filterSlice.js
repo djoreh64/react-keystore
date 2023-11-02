@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { useSelector } from 'react-redux'
 
 const initialState = {
   search: '',
@@ -32,5 +33,6 @@ const filterSlice = createSlice({
   }
 })
 
+export const getGenre = state => state.genres
 export const { setGenre, setSort, setSortIcon, setSearchValue} = filterSlice.actions
 export default filterSlice.reducer

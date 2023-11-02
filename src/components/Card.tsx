@@ -1,9 +1,17 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addItem } from '../redux/slices/cartSlice'
 import { addFavourite, removeFavourite} from '../redux/slices/favouritesSlice'
 
-const Card = ({id, name, price, cover}) => {
+type cardProps = {
+    id: string, 
+    name: string,
+    price: number,
+    cover: string
+}
+
+const Card: React.FC<cardProps> = ({id, name, price, cover}) => {
     const dispatch = useDispatch()
     const cartItem = useSelector(state => state.cart.items.find(obj => obj.id === id))
     

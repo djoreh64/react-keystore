@@ -5,13 +5,13 @@ import { debounce } from "lodash"
 import { setSearchValue } from "../redux/slices/filterSlice"
 import { useDispatch } from "react-redux"
 
-function Header() {
+const Header: React.FC = () => {
     const location = useLocation()
-    const [activeMenu, setActiveMenu] = useState(false)
-    const [value, setValue] = useState('')
+    const [activeMenu, setActiveMenu] = useState<boolean>(false)
+    const [value, setValue] = useState<string>('')
     const dispatch = useDispatch()
-    const menuRef = React.useRef()
-    const menuIconRef = React.useRef()
+    const menuRef = React.useRef<HTMLDivElement>(null)
+    const menuIconRef = React.useRef<HTMLAnchorElement>(null)
     const updateSearchValue = React.useCallback(
         debounce((str) => {
             dispatch(setSearchValue(str))
@@ -25,7 +25,7 @@ function Header() {
 
     React.useEffect(() => {
         document.body.addEventListener('click', (e) => {
-          if(!e.composedPath().includes(menuRef.current)) {
+          if(!e.composedPath().includes(menuRef.current!)) {
             setActiveMenu(false) 
           }
         })

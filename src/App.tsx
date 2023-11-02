@@ -1,14 +1,14 @@
 import React from 'react'
-import Home from './pages/Home'
-import Game from './pages/Game/Game'
-import Cart from './pages/Cart'
-import Favourites from './pages/Favourites'
-import NotFound from './pages/NotFound'
+import Home from './pages/Home.tsx'
+import Game from './pages/Game/Game.tsx'
+import Cart from './pages/Cart/index.tsx'
+import Favourites from './pages/Favourites/index.tsx'
+import NotFound from './pages/NotFound/index.tsx'
 import { Route, Routes }  from 'react-router-dom'
-import SignIn from './pages/SignIn'
-import MainLayout from './layouts/MainLayout'
+import SignIn from './pages/SignIn/index.tsx'
+import MainLayout from './layouts/MainLayout.tsx'
 
-function App() {
+const App: React.FC = () => {
   return (
     <Routes>
       <Route path = '/' element = {<MainLayout/>}>

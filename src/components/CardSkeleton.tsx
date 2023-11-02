@@ -1,7 +1,7 @@
 import React from "react"
 import ContentLoader from "react-content-loader"
 
-const MyLoader = (props) => (
+const MyLoader: React.FC = (props) => (
   <ContentLoader 
     className="skeleton"
     speed={1}

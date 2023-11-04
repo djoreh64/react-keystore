@@ -16,12 +16,13 @@
         height: 50vh;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 1024px) {
         flex-direction: column;
     }
 
     &__add_to_cart {
         color: #e8e8e8;
+        margin-bottom: 40px;
         padding: 20px 10px;
         width: 200px;
         display: flex;
@@ -41,6 +42,7 @@
             background-color: #e8e8e8;
             padding: 20px 10px;
             width: 200px;
+            margin-bottom: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -88,8 +90,8 @@
     }
 
     &__cover {
-        width: 20vw;
-        max-height: 30vw;
+        width: calc(100px + 300 * (100vw / 1920));
+        height: calc(45px + 500 * (100vw / 1920));
         border-radius: 15px;
         background-position: center;
         background-size: cover;
@@ -98,23 +100,64 @@
 
         @media (max-width: 1024px) {
             min-width: 200px;
-            min-height: 300px;
-        }
-
-        @media (max-width: 600px) {
+            min-height: 500px;
+            max-width: unset;
             width: 100%;
         }
     }
 
     &__info {
         display: flex;
+        margin-bottom: 40px;
+        max-width: 70%;
         gap: 20px;
         flex-direction: column;
+
+        @media (max-width: 1024px) {
+            max-width: unset;
+        }
     }
 
     &__price {
         color: #bdbdbd;
         @include fontSize(20, 15);
         margin-bottom: 50px;
+
+        @media (max-width: 1024px) {
+            margin: 0;
+        }
+    }
+
+    &__description {
+        position: relative;
+        @include fontSize(14, 12);
+        margin-bottom: 40px;
+        padding-right: 15px;
+        max-height: 250px;
+        overflow-y: scroll;
+        line-height: 25px;
+        width: 100%;
+        color: #E8E8E870;
+
+        p {
+            user-select: text;
+            margin-bottom: 10px;
+            text-align: justify;
+
+            &::selection {
+                background-color: #3b3b3b;
+            }
+        }
+
+        &::-webkit-scrollbar {
+            width: 3px;
+            background-color: #1c1c1c;
+            height: 50px;
+        }
+        &::-webkit-scrollbar-thumb {
+            border-radius: 50%;
+            background-color: #363636;
+        }
+
     }
 }

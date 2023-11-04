@@ -15,11 +15,12 @@ type ParamsType = {
   currentPage: number
 }
 
-type GameType = {
+export type GameType = {
   id: string,
   price: number,
   name: string,
   cover: string,
+  description: string,
   count: number
 }
 

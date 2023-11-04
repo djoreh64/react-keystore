@@ -2,7 +2,7 @@ import React from "react";
 import styles from '../pages/Cart/Cart.module.scss'
 import { useDispatch, useSelector } from 'react-redux';
 import { removeItem, decrementCount, incrementCount } from '../redux/slices/cartSlice.ts'
-import { Link  } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { RootState } from '../redux/store.ts'
 
 type CartItemProps = {
@@ -15,24 +15,28 @@ type CartItemProps = {
 
 const CartItem: React.FC<CartItemProps> = ({id, name, price, cover, count}) => {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const cartItem = useSelector((state: RootState) => state.cart.items.find(obj => obj.name === name))
     const onClickMinus = (e: React.MouseEvent) => {
-        e.preventDefault()
+        e.stopPropagation()
         if (cartItem ? cartItem.count > 1: '') {
             dispatch(decrementCount(name))
         } 
     }
     const onClickPlus = (e: React.MouseEvent<HTMLDivElement>) => {
-        e.preventDefault()
+        e.stopPropagation()
         dispatch(incrementCount(name))
     }
     const onClickRemove = (e: React.MouseEvent<HTMLAnchorElement>) => {
-        e.preventDefault()
+        e.stopPropagation()
         dispatch(removeItem(name))
     }
+    const onClickItem = () => {
+        navigate(`/games/${id}`)
+    }
+
     return (
-        <Link to={`/games/${id}`}>
-        <div className={styles.cart_item}>
+        <div onClick={onClickItem} className={styles.cart_item}>
             <div className={styles.cart_holder}>
                 <a onClick = {onClickRemove} className = {styles.cart__remove}>
                 <svg width="20" height="20" viewBox="0 0 118 115" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -51,7 +55,6 @@ const CartItem: React.FC<CartItemProps> = ({id, name, price, cover, count}) => {
                 </div>
             </div>
         </div>
-        </Link>
     )
 }
 

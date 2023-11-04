@@ -8,19 +8,21 @@ import axios from 'axios'
 import styles from './Game.module.scss'
 import { useState } from 'react'
 import GameSkeleton from '../../components/GameSkeleton.tsx'
-import { RootState } from '../../redux/store.ts'
+import { AppDispatch, RootState } from '../../redux/store.ts'
 
 type GameType = {
   id: string, 
   name: string,
   price: number, 
-  cover: string
+  cover: string,
+  description: string
 }
 
 const Game: React.FC = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   const [isLoading, setIsLoading] = useState(true)
-  const [game, setGame] = React.useState<GameType>([])
+  const gameParams: GameType[] = []
+  const [game, setGame] = React.useState({id: '', name: '', price: 0, cover: '', description: ''})
   const {id, name, price, cover} = game
   const cartItem = useSelector<RootState>(state => state.cart.items.find(obj => obj.id === id))
   const favouriteItem = useSelector<RootState>(state => state.favourites.items.find(obj => obj.id === id))
@@ -81,7 +83,15 @@ const onClickFavourite = () => {
         </svg>
         </div>
         <div className={styles.game__price}>{price}₽</div>
+        <div className={styles.game__description}>{
+        game.description ? game.description
+        .split('\\n')
+        .map((br, i) => {
+          return <p key={i}>{br}</p>
+        }) : ''
+        }</div>
         <Link to={cartItem ? '/cart' : ''} onClick={onClickCartAdd} className={`${cartItem ? styles.game__add_to_cart_active : styles.game__add_to_cart}`}>{cartItem ? 'В корзинe' : 'В корзину'}</Link>
+
       </div>
       </> 
       }

@@ -7,6 +7,9 @@ import ReactPaginate from 'react-paginate';
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchGames } from '../redux/slices/gamesSlice.ts'
 import { AppDispatch, RootState } from '../redux/store.ts'
+import { ReactElement } from "react";
+import { GameType } from '../redux/slices/gamesSlice.ts'
+
 
 const Home: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>()

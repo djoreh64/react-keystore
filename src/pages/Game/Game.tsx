@@ -1,15 +1,16 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-import { addItem } from '../../redux/slices/cartSlice.js'
-import { addFavourite, removeFavourite } from '../../redux/slices/favouritesSlice.js'
+import { addItem } from '../../redux/slices/cartSlice.ts'
+import { addFavourite, removeFavourite } from '../../redux/slices/favouritesSlice.ts'
 import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
 import styles from './Game.module.scss'
 import { useState } from 'react'
 import GameSkeleton from '../../components/GameSkeleton.tsx'
+import { RootState } from '../../redux/store.ts'
 
-type gameType = {
+type GameType = {
   id: string, 
   name: string,
   price: number, 
@@ -19,10 +20,10 @@ type gameType = {
 const Game: React.FC = () => {
   const dispatch = useDispatch()
   const [isLoading, setIsLoading] = useState(true)
-  const [game, setGame] = React.useState<gameType>([])
+  const [game, setGame] = React.useState<GameType>([])
   const {id, name, price, cover} = game
-  const cartItem = useSelector(state => state.cart.items.find(obj => obj.id === id))
-  const favouriteItem = useSelector(state => state.favourites.items.find(obj => obj.id === id))
+  const cartItem = useSelector<RootState>(state => state.cart.items.find(obj => obj.id === id))
+  const favouriteItem = useSelector<RootState>(state => state.favourites.items.find(obj => obj.id === id))
   const { urlID } = useParams()
 
   React.useEffect(() => {

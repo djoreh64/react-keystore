@@ -1,16 +1,23 @@
 import React from 'react'
-import { setGenre } from "../redux/slices/filterSlice";
+import { setGenre } from "../redux/slices/filterSlice.ts";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from 'react';
+import { RootState } from '../redux/store.ts'
+
+type GenreType = {
+  name: string,
+  genreProperty: string
+}
+
 type GenresProps = {
   setCurrentPage: any
 }
 
 const Genres: React.FC<GenresProps> = ({setCurrentPage}) => {
   const dispatch = useDispatch()
-  const genreValue = useSelector(state => state.filter.genre)
+  const genreValue = useSelector((state: RootState) => state.filter.genre)
   const [spread, setSpread] = useState<boolean>(false)
-  const setGenreValue = (id) => {
+  const setGenreValue = (id: GenreType) => {
       dispatch(setGenre(id))
   }
   const spreadRef = React.useRef<HTMLDivElement>(null)
@@ -24,7 +31,7 @@ const Genres: React.FC<GenresProps> = ({setCurrentPage}) => {
     }
   })
 
-  const genres = [
+  const genres: GenreType[] = [
     {name: 'Все', genreProperty: 'all'},
     {name: 'Экшен', genreProperty: 'action'},
     {name: 'Ролевые', genreProperty: 'rpg'},

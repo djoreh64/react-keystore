@@ -1,6 +1,5 @@
 import React from "react"
 import ContentLoader from "react-content-loader"
-import styles from '../pages/Game/Game.module.scss'
 
 const GameSkeleton = (props) => (
     <ContentLoader 

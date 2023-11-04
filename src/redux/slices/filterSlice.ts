@@ -1,7 +1,23 @@
-import { createSlice } from '@reduxjs/toolkit'
-import { useSelector } from 'react-redux'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-const initialState = {
+type GenreType = {
+  name: string,
+  genreProperty: string
+}
+
+type SortType = {
+  name: string,
+  sortProperty: string
+}
+
+interface FilterState {
+  search: string,
+  genre: GenreType,
+  sort: SortType,
+  sortIcon: boolean
+}
+
+const initialState: FilterState = {
   search: '',
   genre: {
     name: 'Все',
@@ -18,16 +34,16 @@ const filterSlice = createSlice({
   name: 'filter',
   initialState,
   reducers: {
-    setGenre(state, action) {
+    setGenre(state, action: PayloadAction<GenreType>) {
       state.genre = action.payload
     },
-    setSort(state, action) {
+    setSort(state, action: PayloadAction<SortType>) {
       state.sort = action.payload
     },
-    setSortIcon(state,action) {
+    setSortIcon(state,action: PayloadAction<boolean>) {
       state.sortIcon = action.payload
     },
-    setSearchValue(state,action) {
+    setSearchValue(state,action: PayloadAction<string>) {
       state.search = action.payload
     }
   }

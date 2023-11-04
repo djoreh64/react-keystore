@@ -5,24 +5,18 @@ import CardSkeleton from '../components/CardSkeleton.tsx'
 import Sort from '../components/Sort.tsx'
 import ReactPaginate from 'react-paginate';
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchGames } from '../redux/slices/gamesSlice'
+import { fetchGames } from '../redux/slices/gamesSlice.ts'
+import { AppDispatch, RootState } from '../redux/store.ts'
 
 const Home: React.FC = () => {
-    const dispatch = useDispatch()
-    let { games, status} = useSelector(state => state.games)
+    const dispatch = useDispatch<AppDispatch>()
+    let { games, status } = useSelector((state: RootState) => state.games)
     const [currentPage, setCurrentPage] = useState<number>(0)
-    const searchText = useSelector(state => state.filter.search)
-    const sortIcon = useSelector(state => state.filter.sortIcon)
-    const sortType = useSelector(state => state.filter.sort)
-    const genreValue = useSelector(state => state.filter.genre)
+    const searchText = useSelector((state: RootState) => state.filter.search)
+    const sortIcon = useSelector((state: RootState) => state.filter.sortIcon)
+    const sortType = useSelector((state: RootState) => state.filter.sort)
+    const genreValue = useSelector((state: RootState) => state.filter.genre)
     const swithcher = require('ai-switcher-translit');
-
-    type fetchGamesType = {
-        genrevalue: string,
-        sortType: string,
-        sortIcon: boolean,
-        currentPage: number
-    }
 
     const getGames = async () => {
         try {
@@ -51,10 +45,10 @@ const Home: React.FC = () => {
                 <div className="card-holder">
                     {status === 'loading'
                     ? [...new Array(20)].map((_, i) => {return <CardSkeleton key = {i}/>}) 
-                    : games = games.filter((obj) => swithcher.getSwitch(obj.name.toLowerCase(), {type: 'engru',}).includes(searchText.toLowerCase()) || obj.name.toLowerCase().includes(searchText.toLowerCase()))
+                    : games.filter((obj) => swithcher.getSwitch(obj.name.toLowerCase(), {type: 'engru'}).includes(searchText.toLowerCase()) || obj.name.toLowerCase().includes(searchText.toLowerCase()))
                     .map(game => {return <Card key={game.name} {...game}/>})}
                 </div>
-                {status !== 'loading' && games.length === 0 ? <div className='card-holder__not-found'>Ничего не найдено!</div> : ''}
+                {status !== 'loading' && games.length === 0 ? <div className='card-holder__not-found' style={{textAlign: 'center'}}>Ничего не найдено!</div> : ''}
                 <ReactPaginate
                     className='pagination'
                     breakLabel="..."

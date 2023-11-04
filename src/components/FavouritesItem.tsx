@@ -1,20 +1,19 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import styles from '../pages/Favourites/Favourites.module.scss'
-import { removeFavourite, addFavourite } from '../redux/slices/favouritesSlice'
+import { removeFavourite} from '../redux/slices/favouritesSlice.ts'
 import { Link } from 'react-router-dom'
 
-type favouriteItemProps = {
+type FavouriteItemProps = {
     id: string,
     name: string, 
     price: number,
     cover: string
 }
 
-const FavouritesItem: React.FC<favouriteItemProps> = ( {id, name, price, cover} ) => {
-    const favouriteItem = useSelector(state => state.favourites.items.find(obj => obj.name === name))
+const FavouritesItem: React.FC<FavouriteItemProps> = ( {id, name, price, cover} ) => {
     const dispatch = useDispatch()
-    const onClickRemove = (e) => { 
+    const onClickRemove = (e: React.MouseEvent<HTMLAnchorElement>) => { 
         e.preventDefault()
         dispatch(removeFavourite(name))
     }

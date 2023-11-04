@@ -1,10 +1,11 @@
 import React from "react";
 import styles from '../pages/Cart/Cart.module.scss'
 import { useDispatch, useSelector } from 'react-redux';
-import { removeItem, decrementCount, incrementCount } from '../redux/slices/cartSlice'
+import { removeItem, decrementCount, incrementCount } from '../redux/slices/cartSlice.ts'
 import { Link  } from "react-router-dom";
+import { RootState } from '../redux/store.ts'
 
-type cartItemProps = {
+type CartItemProps = {
     id: string,
     name: string,
     price: number,
@@ -12,20 +13,20 @@ type cartItemProps = {
     count: number
 }
 
-const CartItem: React.FC<cartItemProps> = ({id, name, price, cover, count}) => {
+const CartItem: React.FC<CartItemProps> = ({id, name, price, cover, count}) => {
     const dispatch = useDispatch()
-    const cartItem = useSelector(state => state.cart.items.find(obj => obj.name === name))
-    const onClickMinus = (e) => {
+    const cartItem = useSelector((state: RootState) => state.cart.items.find(obj => obj.name === name))
+    const onClickMinus = (e: React.MouseEvent) => {
         e.preventDefault()
-        if (cartItem.count > 1) {
+        if (cartItem ? cartItem.count > 1: '') {
             dispatch(decrementCount(name))
         } 
     }
-    const onClickPlus = (e) => {
+    const onClickPlus = (e: React.MouseEvent<HTMLDivElement>) => {
         e.preventDefault()
         dispatch(incrementCount(name))
     }
-    const onClickRemove = (e) => {
+    const onClickRemove = (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault()
         dispatch(removeItem(name))
     }

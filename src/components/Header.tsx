@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Link, useLocation } from "react-router-dom"
 import React from "react"
 import { debounce } from "lodash"
-import { setSearchValue } from "../redux/slices/filterSlice"
+import { setSearchValue } from "../redux/slices/filterSlice.ts"
 import { useDispatch } from "react-redux"
 
 const Header: React.FC = () => {
@@ -13,12 +13,12 @@ const Header: React.FC = () => {
     const menuRef = React.useRef<HTMLDivElement>(null)
     const menuIconRef = React.useRef<HTMLAnchorElement>(null)
     const updateSearchValue = React.useCallback(
-        debounce((str) => {
+        debounce((str: string) => {
             dispatch(setSearchValue(str))
         }, 400), []
     )
 
-    const onChangeInput = (e) => {
+    const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue(e.target.value)
         updateSearchValue(e.target.value)
     }
@@ -66,7 +66,7 @@ const Header: React.FC = () => {
               <div className="nav__btn_holder">
                   <Link to="/signin"><button onClick={() => {setActiveMenu(false)}} className="nav__sign-in">Войти</button></Link>
                   <div className="nav__btn_holder_icons">
-                      <Link to="/favourites"><svg className="favourites_icon" onClick={() => {setActiveMenu(false)}} width="28" height="28" viewBox="0 0 32 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <Link to="/favourites"><svg className={location.pathname === '/favourites' ? 'cart_icon cart_icon_active' : 'cart_icon'} onClick={() => {setActiveMenu(false)}} width="28" height="28" viewBox="0 0 32 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M22.1667 1C27.45 1 31 5.8425 31 10.36C31 19.5088 16.2667 27 16 27C15.7333 27 1 19.5088 1 10.36C1 5.8425 4.55 1 9.83333 1C12.8667 1 14.85 2.47875 16 3.77875C17.15 2.47875 19.1333 1 22.1667 1Z" stroke="#E8E8E8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                           </svg></Link>
                       <Link ref={menuIconRef} className={location.pathname === '/cart' ? 'cart_icon cart_icon_active' : 'cart_icon'} to="/cart"><svg onClick={() => {setActiveMenu(false)}} width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">

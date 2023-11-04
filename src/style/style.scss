@@ -155,7 +155,7 @@ a {
             align-items: center;
             justify-content: center;
             border-radius: 10px;
-            z-index: 999;
+            z-index: 9999;
             right: 0;
             background-color: #1f1f1f;
             overflow: hidden;
@@ -219,9 +219,11 @@ a {
     .genres__spread {
         position: relative;
         z-index: 999;
+
         .genres__ul {
             background-color: #1F1F1F;
             height: 200px;
+            z-index: 999;
             overflow-y: scroll;
             grid-template-columns: 1fr 1fr;
             border-radius: 10px;
@@ -405,7 +407,7 @@ a {
         &__add-to-fav {
             position: absolute;
             transition: .4s ease-out;
-            z-index: 999;
+            z-index: 100;
             right: 24px;
             top: 24px;
             opacity: 0;

@@ -3,9 +3,10 @@ import styles from './Cart.module.scss'
 import CartItem from '../../components/CartItem.tsx'
 import { Link } from "react-router-dom"
 import { useSelector } from 'react-redux'
+import { RootState } from '../../redux/store.ts'
 
 const Cart: React.FC = () => {
-    const {totalPrice, items} = useSelector(state => state.cart)
+    const {totalPrice, items} = useSelector((state: RootState) => state.cart)
     return (
         <div className={styles.cart}>
         {items.length === 0 &&

@@ -1,9 +1,36 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
+import { PayloadAction } from '@reduxjs/toolkit'
+
+type ParamsType = {
+  genreValue: {
+    genreProperty: string,
+    name: string
+  },
+  sortType: {
+    sortProperty: string,
+    name: string
+  },
+  sortIcon: boolean,
+  currentPage: number
+}
+
+type GameType = {
+  id: string,
+  price: number,
+  name: string,
+  cover: string,
+  count: number
+}
+
+interface GamesState {
+  games: GameType[],
+  status: string
+}
 
 export const fetchGames = createAsyncThunk(
   'games/fetchGames',
-  async (params) => {
+  async (params: ParamsType) => {
     const {genreValue,
       sortType,
       sortIcon,
@@ -13,7 +40,7 @@ export const fetchGames = createAsyncThunk(
   }
 )
 
-const initialState = {
+const initialState: GamesState = {
   games: [],
   status: 'loading'
 } 
@@ -22,24 +49,26 @@ const gamesSlice = createSlice({
   name: 'games',
   initialState,
   reducers: {
-    setGames(state, action) {
+    setGames(state, action: PayloadAction<GameType[]>) {
         state.games = action.payload
     }
   },
 
-  extraReducers: {
-    [fetchGames.pending]: (state, action) => {
+  extraReducers: (builder) => {
+    builder.addCase(fetchGames.pending, (state) => {
       state.games = []
       state.status = 'loading'
-    },
-    [fetchGames.rejected]: (state, action) => {
-      state.games = []
-      state.status = 'error'
-    },
-    [fetchGames.fulfilled]: (state, action) => {
+    })
+
+    builder.addCase(fetchGames.fulfilled, (state, action) => {
       state.games = action.payload
       state.status = 'success'
-    }
+    })
+
+    builder.addCase(fetchGames.rejected, (state) => {
+      state.games = []
+      state.status = 'error'
+    })
   }
 })
 

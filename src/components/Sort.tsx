@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { setSort, setSortIcon } from '../redux/slices/filterSlice';
+import { setSort, setSortIcon } from '../redux/slices/filterSlice.ts';
 import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../redux/store.ts';
 
 type SortItem = {
   name: string,
@@ -10,27 +11,31 @@ type SortItem = {
 const sortList: SortItem[] = [
   {name: 'рейтингу', sortProperty: "rating"},
   {name: 'цене', sortProperty: "price"}, 
-  {name: 'алфавиту', sortProperty: "name"}]
+  {name: 'алфавиту', sortProperty: "name"}
+]
 
 const Sort: React.FC = () => {
   const dispatch = useDispatch()
-  const sortType = useSelector(state => state.filter.sort)
-  const sortIcon = useSelector(state => state.filter.sortIcon)
+  const sortType = useSelector((state: RootState) => state.filter.sort)
+  const sortIcon = useSelector((state: RootState) => state.filter.sortIcon)
   const [activeSort, setActiveSort] = useState(false)
   const sortRef = React.useRef<HTMLDivElement>(null)
 
-  const onClickListItem = (i) => {
+  const onClickListItem = (i: SortItem) => {
     dispatch(setSort(i))
     setActiveSort(false)
   }
 
-  const setSortIconValue = () => {
-    dispatch(setSortIcon(!sortIcon))
+  const setSortIconValue = (sort: boolean) => {
+    dispatch(setSortIcon(!sort))
   } 
 
   React.useEffect(() => {
-    document.body.addEventListener('click', (e) => {
-      if(!e.composedPath().includes(sortRef.current)) {
+    document.body.addEventListener('click', (e: MouseEvent) => {
+      const _e = e as MouseEvent & {
+        path: Node[]
+      }
+      if(sortRef.current && !e.composedPath().includes(sortRef.current)) {
         setActiveSort(false)  
       }
     })
@@ -38,7 +43,7 @@ const Sort: React.FC = () => {
 
     return (
         <div ref={sortRef} className='genre__section_sort'>
-          <a href="#" onClick={() => setSortIconValue(!sortIcon)}><svg className={sortIcon ? 'sort_icon' : 'sort_icon active'} width="66" height="42" viewBox="0 0 66 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <a href="#" onClick={() => setSortIconValue(sortIcon)}><svg className={sortIcon ? 'sort_icon' : 'sort_icon active'} width="66" height="42" viewBox="0 0 66 42" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M33 0L65.0429 42H0.957062L33 0Z" fill="#E8E8E8"/>
           </svg></a>
             Сортировать по:

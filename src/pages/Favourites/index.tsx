@@ -3,9 +3,10 @@ import { useSelector } from 'react-redux'
 import styles from './Favourites.module.scss'
 import FavouritesItem from '../../components/FavouritesItem.tsx'
 import { Link } from 'react-router-dom'
+import { RootState } from '../../redux/store.ts'
 
 const Favourites: React.FC = () => {
-    const favouritesItems = useSelector(state => state.favourites.items)
+    const favouritesItems = useSelector((state: RootState) => state.favourites.items)
 
     return (
         <div className={styles.main}>

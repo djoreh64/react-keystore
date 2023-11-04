@@ -1,24 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { addItem } from '../redux/slices/cartSlice'
-import { addFavourite, removeFavourite} from '../redux/slices/favouritesSlice'
+import { addItem } from '../redux/slices/cartSlice.ts'
+import { addFavourite, removeFavourite} from '../redux/slices/favouritesSlice.ts'
+import { RootState } from '../redux/store.ts'
 
-type cardProps = {
+type CardProps = {
     id: string, 
     name: string,
     price: number,
-    cover: string
+    cover: string,
+    count: number
 }
 
-const Card: React.FC<cardProps> = ({id, name, price, cover}) => {
+const Card: React.FC<CardProps> = ({id, name, price, cover}) => {
     const dispatch = useDispatch()
-    const cartItem = useSelector(state => state.cart.items.find(obj => obj.id === id))
-    
-    const favouriteItem = useSelector(state => state.favourites.items.find(obj => obj.id === id))
+    const cartItem = useSelector((state: RootState) => state.cart.items.find(obj => obj.id === id))
+    const favouriteItem = useSelector((state: RootState) => state.favourites.items.find(obj => obj.id === id))
     const onClickCartAdd = () => {
         if (!cartItem) {
-            const item = {
+            const item: CardProps = {
                 id,
                 name,
                 price,
@@ -29,7 +30,7 @@ const Card: React.FC<cardProps> = ({id, name, price, cover}) => {
         }
     }
 
-    const onClickFavourites= (e) => { 
+    const onClickFavourites= (e: React.MouseEvent<SVGSVGElement>) => { 
         e.preventDefault()
         if (favouriteItem) {
             dispatch(removeFavourite(name))

@@ -1,6 +1,7 @@
 import React from 'react'
 import Home from './pages/Home.tsx'
 import Game from './pages/Game/Game.tsx'
+import SignUp from './pages/SignUp/index.tsx'
 import Cart from './pages/Cart/index.tsx'
 import Favourites from './pages/Favourites/index.tsx'
 import NotFound from './pages/NotFound/index.tsx'
@@ -15,6 +16,7 @@ const App: React.FC = () => {
         <Route path='' element= {<Home />}/>
         <Route path='/cart' element= {<Cart />}/>
         <Route path='/signin' element= {<SignIn/>}/>
+        <Route path='/signup' element= {<SignUp/>}/>
         <Route path='/games/:urlID' element= {<Game/>}/>
         <Route path='/favourites' element= {<Favourites/>}/>
         <Route path='*' element= {<NotFound/>}/>

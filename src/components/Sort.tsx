@@ -14,7 +14,7 @@ const sortList: SortItem[] = [
   {name: 'алфавиту', sortProperty: "name"}
 ]
 
-const Sort: React.FC = () => {
+const Sort: React.FC = React.memo(() => {
   const dispatch = useDispatch()
   const sortType = useSelector((state: RootState) => state.filter.sort)
   const sortIcon = useSelector((state: RootState) => state.filter.sortIcon)
@@ -60,6 +60,6 @@ const Sort: React.FC = () => {
           </div>
           </div>
     )
-}
+})
 
 export default Sort

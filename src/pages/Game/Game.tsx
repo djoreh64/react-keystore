@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { addItem } from '../../redux/slices/cartSlice.ts'
@@ -21,12 +21,12 @@ type GameType = {
 const Game: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>()
   const [isLoading, setIsLoading] = useState(true)
-  const gameParams: GameType[] = []
   const [game, setGame] = React.useState({id: '', name: '', price: 0, cover: '', description: ''})
   const {id, name, price, cover} = game
   const cartItem = useSelector<RootState>(state => state.cart.items.find(obj => obj.id === id))
   const favouriteItem = useSelector<RootState>(state => state.favourites.items.find(obj => obj.id === id))
   const { urlID } = useParams()
+  const favouriteRef = useRef<SVGSVGElement>(null)
 
   React.useEffect(() => {
     async function fetchGames() {
@@ -56,6 +56,9 @@ const Game: React.FC = () => {
 }
 
 const onClickFavourite = () => {
+  if (favouriteRef.current) {
+    favouriteRef.current.style.cssText = 'animation: none'
+  }
   if (favouriteItem) {
     dispatch(removeFavourite(name))
   } else {
@@ -78,7 +81,7 @@ const onClickFavourite = () => {
       <div className={styles.game__info}>
         <div className={styles.game__headlineBlock}>
         <h1 className={styles.game__headline}>{name}</h1>
-        <svg onClick = {onClickFavourite} className={`${!favouriteItem ? styles.game__add_to_favourite : styles.game__add_to_favourite_active }`} width="40px" height="40px" viewBox="0 0 24 24" fill="transparent" xmlns="http://www.w3.org/2000/svg">
+        <svg ref = {favouriteRef} onClick = {onClickFavourite} className={`${!favouriteItem ? styles.game__add_to_favourite : styles.game__add_to_favourite_active }`} width="40px" height="40px" viewBox="0 0 24 24" fill="transparent" xmlns="http://www.w3.org/2000/svg">
             <path d="M15.7 4C18.87 4 21 6.98 21 9.76C21 15.39 12.16 20 12 20C11.84 20 3 15.39 3 9.76C3 6.98 5.13 4 8.3 4C10.12 4 11.31 4.91 12 5.71C12.69 4.91 13.88 4 15.7 4Z" stroke="#e8e8e8" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
         </div>

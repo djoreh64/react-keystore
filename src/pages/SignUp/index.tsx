@@ -1,15 +1,15 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { Form } from '../../components/Form.tsx';
 import { setUser } from '../../redux/slices/userSlice.ts';
+import { AppDispatch } from '../../redux/store.ts';
 
 const SignUp = () => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch<AppDispatch>()
     const handleRegister = (email: string, password: string) => {
         const auth = getAuth();
-        console.log(auth)
-        signInWithEmailAndPassword(auth, email, password)
+        createUserWithEmailAndPassword(auth, email, password)
             .then(({user}) => {
                 dispatch(setUser({
                     email: user.email,
@@ -24,11 +24,11 @@ const SignUp = () => {
 
     return (
         <Form
-            title="Вход"
-            desc='Еще нет аккаунта?'
-            button='Войти'
-            action='Зарегистрироваться'
-            link='signup'
+            title="Регистрация"
+            desc='Уже есть аккаунт?'
+            button='Зарегистрироваться'
+            action='Войти'
+            link='signin'
             handleClick={handleRegister}
         />
     )

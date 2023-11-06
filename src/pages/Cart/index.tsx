@@ -6,7 +6,8 @@ import { useSelector } from 'react-redux'
 import { RootState } from '../../redux/store.ts'
 
 const Cart: React.FC = () => {
-    const {totalPrice, items} = useSelector((state: RootState) => state.cart)
+    const {items} = useSelector((state: RootState) => state.cart)
+    const totalPrice = items.reduce((sum, item) => sum + item.count * item.price, 0)
     return (
         <div className={styles.cart}>
         {items.length === 0 &&

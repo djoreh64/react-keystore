@@ -9,6 +9,16 @@
     }
 }
 
+@keyframes fadeIn {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+        pointer-events: none;
+    } to {
+        pointer-events: all;
+    }
+}
+
 * {
     user-select: none;
 }
@@ -38,6 +48,7 @@
         }
 
         &_button {
+            animation: fadeIn ease-out .9s;
             padding: 10px 40px;
             border: 2px solid #e8e8e8;
             border-radius: 15px;
@@ -51,6 +62,7 @@
         }
     
         &_headline {
+            animation: fadeIn ease-out 1.4s;
             @include fontSize(80, 40);
             color: #e8e8e8;
             display: flex;
@@ -72,6 +84,7 @@
     }
 
     &_items {
+        animation: fadeIn 1s;
         width: 100%;
     }
 
@@ -196,6 +209,7 @@
     }
 
     &_right {
+        animation: fadeIn 1.5s;
         position: sticky;
         top: 50px;
         width: 411px;

@@ -13,7 +13,7 @@ type GenresProps = {
   setCurrentPage: any
 }
 
-const Genres: React.FC<GenresProps> = ({setCurrentPage}) => {
+const Genres: React.FC<GenresProps> = React.memo(({setCurrentPage}) => {
   const dispatch = useDispatch()
   const genresHolderRef = React.useRef<HTMLDivElement>(null)
   const genreValue = useSelector((state: RootState) => state.filter.genre)
@@ -22,7 +22,7 @@ const Genres: React.FC<GenresProps> = ({setCurrentPage}) => {
       dispatch(setGenre(id))
   }
   const spreadRef = React.useRef<HTMLDivElement>(null)
-  const onClickButton = () => {
+  const onClickSpread = () => {
     setSpread(!spread)
   }
 
@@ -68,7 +68,7 @@ const Genres: React.FC<GenresProps> = ({setCurrentPage}) => {
                className = {genreValue.genreProperty == genre.genreProperty ? 'genre-btn checked-genre' : 'genre-btn'}>{genre.name}</a>
           ))}
           <div ref={spreadRef} className="genres__spread">
-            <div onClick={onClickButton} className="genres__button genre-btn">Ещё</div>
+            <div onClick={onClickSpread} className="genres__button genre-btn">Ещё</div>
             <div className={spread ? "genres__ul" : "genres__ul genres__ul_hide"}>
             <div className='genres__popup'>
             <ul>
@@ -87,6 +87,6 @@ const Genres: React.FC<GenresProps> = ({setCurrentPage}) => {
           </div>
         </div>
     )
-  }
+  })
 
 export default Genres

@@ -3,6 +3,7 @@ import filter from './slices/filterSlice.ts'
 import cart from './slices/cartSlice.ts'
 import games from './slices/gamesSlice.ts'
 import favourites from './slices/favouritesSlice.ts'
+import user from './slices/userSlice.ts'
 import { useDispatch } from 'react-redux'
 
 export const store = configureStore({
@@ -10,7 +11,8 @@ export const store = configureStore({
      filter,
      cart,
      games,
-     favourites
+     favourites,
+     user
   },
 })
 

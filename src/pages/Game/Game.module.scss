@@ -1,5 +1,12 @@
 @import '/src/style/style.scss';
 
+@keyframes fadeIn {
+    from {
+        transform: translateY(40px);
+        opacity: 0;
+    }
+}
+
 .game {
     width: 81.7%;
     display: flex;
@@ -21,6 +28,7 @@
     }
 
     &__add_to_cart {
+        animation: fadeIn 3.5s;
         color: #e8e8e8;
         margin-bottom: 40px;
         padding: 20px 10px;
@@ -90,6 +98,7 @@
     }
 
     &__cover {
+        animation: fadeIn .8s;
         width: calc(100px + 300 * (100vw / 1920));
         height: calc(45px + 500 * (100vw / 1920));
         border-radius: 15px;
@@ -119,6 +128,7 @@
     }
 
     &__price {
+        animation: fadeIn 1.8s;
         color: #bdbdbd;
         @include fontSize(20, 15);
         margin-bottom: 50px;
@@ -129,6 +139,7 @@
     }
 
     &__description {
+        animation: fadeIn 2.8s;
         position: relative;
         @include fontSize(14, 12);
         margin-bottom: 40px;

@@ -12,6 +12,13 @@
     }
 }
 
+@keyframes fadeIn {
+    from {
+        transform: translateY(40px);
+        opacity: 0;
+    }
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -153,12 +160,21 @@ a {
         grid-template-columns: repeat(1, 1fr);
     }
 
+        $i: 0;
+        @while ($i < 21) {
+            .card:nth-child(#{$i}) {
+                animation: fadeIn #{$i*.4 - .1} + s;
+            }
+            $i: $i+1;
+        }
+
     .card {
         overflow: hidden;
         color: #E8E8E8;
         position: relative;
         height: 450px;
         border-radius: 10px;
+        
 
         &::before {
             content: '';

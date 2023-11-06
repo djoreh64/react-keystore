@@ -1,0 +1,110 @@
+.main {
+    height: calc(100vh - 400px);
+    font-size: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #e8e8e8;
+
+    @media (max-width: 1024px) {
+        height: calc(100vh - 200px);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+}
+
+.form {
+    animation: fadeIn ease-out 1.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    min-width: 400px;
+    border-radius: 20px;
+    background-color: #1f1f1f;
+    transition: .4s ease-out;
+
+    &:hover {
+        transform: translateY(-4px);
+    }
+
+    &__wrapper {
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        padding: 60px;
+    }
+
+    &__headline {
+        margin-bottom: 50px;
+        font-size: 40px;
+        text-align: left;
+    }
+
+    &__inputs {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        border: unset;
+
+        input {
+            width: 100%;
+            height: 50px;
+            box-sizing: border-box;
+            border-radius: 5px;
+            padding: 10px 30px;
+            color: #1f1f1f;
+            transition: .4s ease-out;
+
+            &:focus {
+                background-color: #e8e8e8;
+            }
+        }
+    }
+
+    &__content {
+        width: 100%;
+        height: 70%;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+
+    &__button {
+        width: 100%;
+        background-color: #363636;
+        border-radius: 10px;
+        box-sizing: border-box;
+        margin-top: 50px;
+        padding: 25px 20px;
+        cursor: pointer;
+        transition: .4s ease-out;
+
+        &:hover, &:focus {
+            background-color: #4b4b4b;
+        }
+    }
+
+    &__signup {
+        color: #797979;
+        margin-top: 20px;
+        font-size: 12px;
+        a {
+            cursor: pointer;
+            transition: .3s ease-out;
+            &:hover {
+                color: #9e9e9e;
+            }
+        }
+
+    }
+}

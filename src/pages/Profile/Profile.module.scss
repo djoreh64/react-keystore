@@ -1,0 +1,48 @@
+@keyframes fadeIn {
+    from {
+        transform: translateY(40px);
+        opacity: 0;
+    }
+}
+
+.profile {
+    width: 100%;
+    height: calc(100vh - 400px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    @media (max-width: 1024px) {
+        height: calc(100vh - 200px);
+    }
+
+    &__headline {
+        animation: fadeIn 1s;
+        color: #e8e8e8;
+        font-size: calc(40px + 40 * (100vw / 1920));
+    }
+
+    &__info {
+        animation: fadeIn 2s;
+        color: #e8e8e8;
+        font-weight: 600;
+        font-size: 20px;
+        margin-top: 40px;
+    }
+
+    &__button {
+        animation: fadeIn 3s;
+        margin-top: 50px;
+        padding: 15px 35px;
+        color: #e8e8e8;
+        border-radius: 10px;
+        border: 2px solid #e8e8e8;
+        transition: .4s ease-out;
+
+        &:hover {
+            background-color: #e8e8e8;
+            color: #1c1c1c;
+        }
+    }
+}

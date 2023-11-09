@@ -6,6 +6,7 @@
     justify-content: center;
     text-align: center;
     color: #e8e8e8;
+    padding: 20px;
 
     @media (max-width: 1024px) {
         height: calc(100vh - 200px);
@@ -24,11 +25,10 @@
     align-items: center;
     justify-content: center;
     margin-top: 40px;
-    min-width: 400px;
     border-radius: 20px;
     background-color: #1f1f1f;
     transition: .4s ease-out;
-
+    
     &:hover {
         transform: translateY(-4px);
     }
@@ -65,7 +65,7 @@
             color: #1f1f1f;
             transition: .4s ease-out;
 
-            &:focus {
+            &:focus, &:hover {
                 background-color: #e8e8e8;
             }
         }
@@ -83,6 +83,7 @@
         width: 100%;
         background-color: #363636;
         border-radius: 10px;
+        font-size: 15px;
         box-sizing: border-box;
         margin-top: 50px;
         padding: 25px 20px;

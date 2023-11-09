@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
       "baseUrl": "./",
-      "include": ["./assets.d.ts"],
+      "include": [",./assets.d.ts"],
       "paths": {
         "*": ["src/types/*"]
       },

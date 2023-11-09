@@ -8,6 +8,7 @@ import NotFound from './pages/NotFound/index.tsx'
 import { Route, Routes }  from 'react-router-dom'
 import SignIn from './pages/SignIn/index.tsx'
 import MainLayout from './layouts/MainLayout.tsx'
+import Profile from './pages/Profile/index.tsx'
 
 const App: React.FC = () => {
   return (
@@ -17,6 +18,7 @@ const App: React.FC = () => {
         <Route path='/cart' element= {<Cart />}/>
         <Route path='/signin' element= {<SignIn/>}/>
         <Route path='/signup' element= {<SignUp/>}/>
+        <Route path='/profile' element= {<Profile/>}/>
         <Route path='/games/:urlID' element= {<Game/>}/>
         <Route path='/favourites' element= {<Favourites/>}/>
         <Route path='*' element= {<NotFound/>}/>

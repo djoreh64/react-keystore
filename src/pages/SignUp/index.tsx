@@ -5,7 +5,7 @@ import { Form } from '../../components/Form.tsx';
 import { setUser } from '../../redux/slices/userSlice.ts';
 import { AppDispatch } from '../../redux/store.ts';
 
-const SignUp = () => {
+const SignUp: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>()
     const handleRegister = (email: string, password: string) => {
         const auth = getAuth();
@@ -13,12 +13,12 @@ const SignUp = () => {
             .then(({user}) => {
                 dispatch(setUser({
                     email: user.email,
-                    id: user.uid,
                     token: user.refreshToken,
+                    id: user.uid
                 }));
             })
-            .catch(err => {
-                console.log(err)
+            .catch((err) => {
+                alert('Неверное имя пользователя или пароль!')
             })
     }
 

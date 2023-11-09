@@ -3,12 +3,12 @@ import { useDispatch } from 'react-redux';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { Form } from '../../components/Form.tsx';
 import { setUser } from '../../redux/slices/userSlice.ts';
+import { AppDispatch } from '../../redux/store.ts';
 
-const SignUp = () => {
-    const dispatch = useDispatch()
-    const handleRegister = (email: string, password: string) => {
+const SignIn: React.FC = () => {
+    const dispatch = useDispatch<AppDispatch>()
+    const handleSignIn = (email: string, password: string) => {
         const auth = getAuth();
-        console.log(auth)
         signInWithEmailAndPassword(auth, email, password)
             .then(({user}) => {
                 dispatch(setUser({
@@ -18,7 +18,7 @@ const SignUp = () => {
                 }));
             })
             .catch(err => {
-                console.log(err)
+                alert('Неверное имя пользователя или пароль!')
             })
     }
 
@@ -29,9 +29,9 @@ const SignUp = () => {
             button='Войти'
             action='Зарегистрироваться'
             link='signup'
-            handleClick={handleRegister}
+            handleClick={handleSignIn}
         />
     )
 }
 
-export default SignUp
+export default SignIn

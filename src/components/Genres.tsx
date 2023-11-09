@@ -10,7 +10,7 @@ type GenreType = {
 }
 
 type GenresProps = {
-  setCurrentPage: any
+  setCurrentPage: (page: number) => void
 }
 
 const Genres: React.FC<GenresProps> = React.memo(({setCurrentPage}) => {
@@ -26,8 +26,8 @@ const Genres: React.FC<GenresProps> = React.memo(({setCurrentPage}) => {
     setSpread(!spread)
   }
 
-  document.body.addEventListener('click', (e: any) => {
-    if (!e.composedPath().includes(spreadRef.current)) {
+  document.body.addEventListener('click', (e: MouseEvent) => {
+    if (!e.composedPath().includes(spreadRef.current!)) {
       setSpread(false)
     }
   })

@@ -94,11 +94,9 @@ const onClickFavourite = () => {
         }) : ''
         }</div>
         <Link to={cartItem ? '/cart' : ''} onClick={onClickCartAdd} className={`${cartItem ? styles.game__add_to_cart_active : styles.game__add_to_cart}`}>{cartItem ? 'В корзинe' : 'В корзину'}</Link>
-
       </div>
       </> 
       }
-      
     </div>
   )
 }

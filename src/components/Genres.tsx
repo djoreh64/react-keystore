@@ -1,8 +1,8 @@
 import React from 'react';
-import { setGenre } from '../redux/slices/filterSlice.ts';
+import { setGenre } from '../redux/slices/filterSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { RootState } from '../redux/store.ts';
+import { RootState } from '../redux/store';
 
 type GenreType = {
   name: string,

@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from '../pages/Cart/Cart.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeItem, decrementCount, incrementCount } from '../redux/slices/cartSlice.ts';
+import { removeItem, decrementCount, incrementCount } from '../redux/slices/cartSlice';
 import { useNavigate } from 'react-router-dom';
-import { RootState } from '../redux/store.ts';
+import { RootState } from '../redux/store';
 
 type CartItemProps = {
     id: string,

@@ -1,9 +1,9 @@
+import React from 'react';
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import React from 'react';
-import Search from './Search.tsx';
+import Search from './Search';
 import { useSelector } from 'react-redux';
-import { RootState } from '../redux/store.ts';
+import { RootState } from '../redux/store';
 
 const Header: React.FC = () => {
 	const location = useLocation();

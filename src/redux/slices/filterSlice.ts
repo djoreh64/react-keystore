@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { RootState } from '../store';
 
 type GenreType = {
   name: string,
@@ -49,6 +50,5 @@ const filterSlice = createSlice({
 	}
 });
 
-export const getGenre = state => state.genres;
 export const { setGenre, setSort, setSortIcon, setSearchValue} = filterSlice.actions;
 export default filterSlice.reducer;

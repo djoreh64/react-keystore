@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { addItem } from '../redux/slices/cartSlice.ts';
-import { RootState } from '../redux/store.ts';
+import { addItem } from '../redux/slices/cartSlice';
+import { RootState } from '../redux/store';
 
 type CardProps = {
     id: string, 

@@ -1,6 +1,6 @@
 import { Link, Navigate } from 'react-router-dom';
-import { removeUser } from '../../redux/slices/userSlice.ts';
-import { AppDispatch, RootState } from '../../redux/store.ts';
+import { removeUser } from '../../redux/slices/userSlice';
+import { AppDispatch, RootState } from '../../redux/store';
 import styles from '../Profile/Profile.module.scss';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';

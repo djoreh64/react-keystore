@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { getFavouriteItems } from '../../utils/getFavouriteItems.ts';
+import { getFavouriteItems } from '../../utils/getFavouriteItems';
 
 type FavouriteItem = {
   id: string,

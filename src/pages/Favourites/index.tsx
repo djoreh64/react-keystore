@@ -1,9 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import styles from './Favourites.module.scss';
-import FavouritesItem from '../../components/FavouritesItem.tsx';
+import FavouritesItem from '../../components/FavouritesItem';
 import { Link } from 'react-router-dom';
-import { RootState } from '../../redux/store.ts';
+import { RootState } from '../../redux/store';
 
 const Favourites: React.FC = () => {
 	const {items} = useSelector((state: RootState) => state.favourites);

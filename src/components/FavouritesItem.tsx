@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import styles from '../pages/Favourites/Favourites.module.scss';
-import { removeFavourite} from '../redux/slices/favouritesSlice.ts';
+import { removeFavourite} from '../redux/slices/favouritesSlice';
 import { Link } from 'react-router-dom';
 
 type FavouriteItemProps = {

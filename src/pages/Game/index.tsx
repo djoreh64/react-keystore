@@ -1,14 +1,14 @@
 import React, { useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { addItem } from '../../redux/slices/cartSlice.ts';
-import { addFavourite, removeFavourite } from '../../redux/slices/favouritesSlice.ts';
+import { addItem } from '../../redux/slices/cartSlice';
+import { addFavourite, removeFavourite } from '../../redux/slices/favouritesSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import styles from './Game.module.scss';
 import { useState } from 'react';
-import GameSkeleton from '../../components/GameSkeleton.tsx';
-import { AppDispatch, RootState } from '../../redux/store.ts';
+import GameSkeleton from '../../components/GameSkeleton';
+import { AppDispatch, RootState } from '../../redux/store';
 
 type GameType = {
   id: string, 

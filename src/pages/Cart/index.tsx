@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from '../Cart/Cart.module.scss';
-import CartItem from '../../components/CartItem.tsx';
+import CartItem from '../../components/CartItem';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store.ts';
+import { RootState } from '../../redux/store';
 
 const Cart: React.FC = () => {
 	const {items} = useSelector((state: RootState) => state.cart);

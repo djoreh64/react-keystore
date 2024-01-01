@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { setSort, setSortIcon } from '../redux/slices/filterSlice.ts';
+import { setSort, setSortIcon } from '../redux/slices/filterSlice';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../redux/store.ts';
+import { RootState } from '../redux/store';
 
 type SortItem = {
   name: string,

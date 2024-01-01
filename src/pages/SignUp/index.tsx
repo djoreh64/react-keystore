@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-import { Form } from '../../components/Form.tsx';
-import { setUser } from '../../redux/slices/userSlice.ts';
-import { AppDispatch } from '../../redux/store.ts';
+import { Form } from '../../components/Form';
+import { setUser } from '../../redux/slices/userSlice';
+import { AppDispatch } from '../../redux/store';
 
 const SignUp: React.FC = () => {
 	const dispatch = useDispatch<AppDispatch>();

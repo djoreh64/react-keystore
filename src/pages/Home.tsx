@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import Genres from '../components/Genres.tsx';
-import Card from '../components/Card.tsx';
-import CardSkeleton from '../components/CardSkeleton.tsx';
-import Sort from '../components/Sort.tsx';
+import {Card, CardSkeleton, Genres, Sort} from '../components/index';
 import ReactPaginate from 'react-paginate';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchGames } from '../redux/slices/gamesSlice.ts';
-import { AppDispatch, RootState } from '../redux/store.ts';
+import { fetchGames } from '../redux/slices/gamesSlice';
+import { AppDispatch, RootState } from '../redux/store';
 
 const Home: React.FC = () => {
 	const dispatch = useDispatch<AppDispatch>();

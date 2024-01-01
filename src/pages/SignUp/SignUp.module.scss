@@ -1,5 +1,5 @@
 .main {
-    height: calc(100vh - 400px);
+    height: calc(100vh - 200px);
     font-size: 50px;
     display: flex;
     align-items: center;
@@ -24,10 +24,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 40px;
     border-radius: 20px;
     background-color: #1f1f1f;
     transition: .4s ease-out;
+    margin-bottom: 50px;
     
     &:hover {
         transform: translateY(-4px);

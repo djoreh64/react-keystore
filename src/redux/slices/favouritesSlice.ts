@@ -1,4 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { getFavouriteItems } from '../../utils/getFavouriteItems.ts';
 
 type FavouriteItem = {
   id: string,
@@ -12,21 +13,21 @@ interface FavouritesState {
 }
 
 const initialState: FavouritesState = {
-  items: []
-} 
+	items: getFavouriteItems()
+}; 
 
 const favouritesSlice = createSlice({
-  name: 'favourites',
-  initialState,
-  reducers: {
-    addFavourite(state, action: PayloadAction<FavouriteItem>) {
-        state.items.push(action.payload)
-    },
-    removeFavourite(state, action: PayloadAction<string>) {
-      state.items = state.items.filter(item => item.name !== action.payload)
-    }
-  }
-})
+	name: 'favourites',
+	initialState,
+	reducers: {
+		addFavourite(state, action: PayloadAction<FavouriteItem>) {
+			state.items.push(action.payload);
+		},
+		removeFavourite(state, action: PayloadAction<string>) {
+			state.items = state.items.filter(item => item.name !== action.payload);
+		}
+	}
+});
 
-export const { addFavourite, removeFavourite} = favouritesSlice.actions
-export default favouritesSlice.reducer
+export const { addFavourite, removeFavourite} = favouritesSlice.actions;
+export default favouritesSlice.reducer;
